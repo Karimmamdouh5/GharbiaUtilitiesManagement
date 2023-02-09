@@ -1,0 +1,36 @@
+﻿global using System.ComponentModel.DataAnnotations;
+global using System.ComponentModel.DataAnnotations.Schema;
+global using Microsoft.AspNetCore.Identity;
+global using UtilitiesManagement.Domain.Interfaces;
+global using FirstMyApp.Domain.Extensions;
+global using UtilitiesManagement.Domain.Constants;
+global using UtilitiesManagement.Domain.Dtos.Response.Auth;
+global using Microsoft.EntityFrameworkCore;
+global using UtilitiesManagement.Domain.Models;
+global using UtilitiesManagement.Domain.Interfaces.Shared;
+global using UtilitiesManagement.Domain.Interfaces.HR;
+global using UtilitiesManagement.Domain.Models.Align;
+global using UtilitiesManagement.Domain.Models.HR;
+global using UtilitiesManagement.Domain.Models.Shared;
+global using UtilitiesManagement.Domain.Dtos.Response;
+global using UtilitiesManagement.Domain.Models.Permission;
+global using Microsoft.AspNetCore.Http;
+global using UtilitiesManagement.Domain.Interfaces.Auth;
+global using System.ComponentModel;
+global using UtilitiesManagement.Domain.Dtos.Response.Shared;
+global using UtilitiesManagement.Domain.Models.Technician;
+global using UtilitiesManagement.Domain.Interfaces.Technician;
+global using UtilitiesManagement.Domain.Models.Bill;
+global using UtilitiesManagement.Domain.Models.Customer;
+global using UtilitiesManagement.Domain.Models.Operation;
+global using UtilitiesManagement.Domain.Interfaces.Operation;
+global using UtilitiesManagement.Domain.ViewModels.Shared;
+global using UtilitiesManagement.Domain.Interfaces.Customer;
+global using UtilitiesManagement.Domain.Dtos.Response.Technician;
+global using UtilitiesManagement.Domain.ViewModels.Customer;
+global using UtilitiesManagement.Domain.Dtos.Request.Customer;
+global using UtilitiesManagement.Domain.ViewModels.Bills;
+global using UtilitiesManagement.Domain.Dtos.Response.Bill;
+global using UtilitiesManagement.Domain.Dtos.Request.Shared;
+
+

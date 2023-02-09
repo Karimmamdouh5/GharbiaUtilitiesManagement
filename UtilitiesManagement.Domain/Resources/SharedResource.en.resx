@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activated" xml:space="preserve">
+    <value>Activated</value>
+  </data>
+  <data name="CannotBeFound" xml:space="preserve">
+    <value>{0} cannot be found</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="ClientCategory" xml:space="preserve">
+    <value>Client Category</value>
+  </data>
+  <data name="CompanyBranch" xml:space="preserve">
+    <value>Company branch</value>
+  </data>
+  <data name="CompanyIsNotActivated" xml:space="preserve">
+    <value>Company Is Not Activated</value>
+  </data>
+  <data name="DeActivated" xml:space="preserve">
+    <value>Deactivated</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted successfully</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="Email_Password_Incorrect" xml:space="preserve">
+    <value>Email or Password is incorrect!</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Some thing went wrong.</value>
+  </data>
+  <data name="Exists" xml:space="preserve">
+    <value>Exists</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>{0} is exist</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LockTechnicalsLogins" xml:space="preserve">
+    <value>User login has been deactivated</value>
+  </data>
+  <data name="NotUpdate" xml:space="preserve">
+    <value>Not update</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="TaxOffice" xml:space="preserve">
+    <value>Tax office</value>
+  </data>
+  <data name="ThereIsActiveEmployeesRelatedToThisBranch" xml:space="preserve">
+    <value>There is active employees related to this is branch</value>
+  </data>
+  <data name="UnLockTechnicalsLogins" xml:space="preserve">
+    <value>User login has been activated</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated successfully</value>
+  </data>
+  <data name="UserDataIsIncorrect" xml:space="preserve">
+    <value>User Data is incorrect !</value>
+  </data>
+  <data name="UserIsLoggedOut" xml:space="preserve">
+    <value>User  logged out Successfully.</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>User does not exist.</value>
+  </data>
+  <data name="UserWithEmailExists" xml:space="preserve">
+    <value>User with this email address already exists.</value>
+  </data>
+  <data name="UserWithNameExists" xml:space="preserve">
+    <value>User with this User Name already exists.</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="CompanyIsNotActive" xml:space="preserve">
+    <value>Company is not active</value>
+  </data>
+  <data name="NotActive" xml:space="preserve">
+    <value>Not Active</value>
+  </data>
+  <data name="NotActiveNotUpdate" xml:space="preserve">
+    <value>Status Not Active Please Change Status To Can Update</value>
+  </data>
+  <data name="NotFoundMainBranchToCompany" xml:space="preserve">
+    <value>It cannot be updated because there is no main branch of the company</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="NotFoundData" xml:space="preserve">
+    <value>No data are found</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>user</value>
+  </data>
+  <data name="UserIsAlreadyLoggedIn" xml:space="preserve">
+    <value>User is already logged in.</value>
+  </data>
+  <data name="Technician" xml:space="preserve">
+    <value>Technician</value>
+  </data>
+  <data name="HasAnyRelation" xml:space="preserve">
+    <value>Can be delete because it is related to other data in the database</value>
+  </data>
+  <data name="ClientName" xml:space="preserve">
+    <value>Client </value>
+  </data>
+  <data name="UserWasLoggedOutBefore" xml:space="preserve">
+    <value>User was logged out before</value>
+  </data>
+  <data name="FinancialYear" xml:space="preserve">
+    <value>Financial year</value>
+  </data>
+  <data name="CanNotAddFinancialYear" xml:space="preserve">
+    <value>Can't add financial year within this period</value>
+  </data>
+  <data name="CanNotAddFinancialYearAsThereIsActiveOne" xml:space="preserve">
+    <value>Can't add financial year due to another active one</value>
+  </data>
+  <data name="CanNotActivateFinancialYearAsThereIsActiveOne" xml:space="preserve">
+    <value>Can't activate financial year due to another active one</value>
+  </data>
+  <data name="IsRequired" xml:space="preserve">
+    <value>Is required</value>
+  </data>
+  <data name="BothOfCompanyAndFinancialYearRequired" xml:space="preserve">
+    <value>Both of company and financial year are required</value>
+  </data>
+  <data name="CompanyIsRequired" xml:space="preserve">
+    <value>Company is required</value>
+  </data>
+  <data name="FinancialYearIsRequired" xml:space="preserve">
+    <value>Financial year is required</value>
+  </data>
+  <data name="BillBook" xml:space="preserve">
+    <value>Bill book</value>
+  </data>
+  <data name="CanNotAddFinancialYearAsThereIsDateNotConventioned" xml:space="preserve">
+    <value>Can not add financial year as there is date not conventioned</value>
+  </data>
+  <data name="CanNotAddBillBook" xml:space="preserve">
+    <value>Can't add bill book to conflict with the other</value>
+  </data>
+  <data name="ThisEmployeeIsNotTechnician" xml:space="preserve">
+    <value>This Employee Is Not Technician</value>
+  </data>
+  <data name="FinancialYearIsNotActive" xml:space="preserve">
+    <value>Financial year is not active</value>
+  </data>
+  <data name="CannotDeleteItemHasRelativeData" xml:space="preserve">
+    <value>Cannot Delete Item Has Relative Data</value>
+  </data>
+  <data name="PleaseChangeEmployeeActivationState" xml:space="preserve">
+    <value>Please Change Employee Activation State</value>
+  </data>
+  <data name="TheEmployeeNotActive" xml:space="preserve">
+    <value>The Employee Not Active</value>
+  </data>
+  <data name="ClientBranch" xml:space="preserve">
+    <value>Client branch</value>
+  </data>
+  <data name="ThereIs" xml:space="preserve">
+    <value>There is</value>
+  </data>
+  <data name="IsNotSuperAdmin" xml:space="preserve">
+    <value>This Role is not Allowed To Use This Service</value>
+  </data>
+  <data name="NumOfObjectsNotEqualNumOfUploadedImages" xml:space="preserve">
+    <value>Num of added clients not equal num of uploaded images</value>
+  </data>
+  <data name="ThisEmployeeIsNotTech" xml:space="preserve">
+    <value>This Employee Is not Technician</value>
+  </data>
+  <data name="ComplaintType" xml:space="preserve">
+    <value>Complaint type</value>
+  </data>
+  <data name="MeterReading" xml:space="preserve">
+    <value>Meter reading</value>
+  </data>
+  <data name="Complaint" xml:space="preserve">
+    <value>Complaint</value>
+  </data>
+  <data name="UpdatedCustomer" xml:space="preserve">
+    <value>Updated customer</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="BillExist" xml:space="preserve">
+    <value>There is an Bill With The Same Id</value>
+  </data>
+  <data name="FailedSecondStageSave" xml:space="preserve">
+    <value>Failed Second Stage Save</value>
+  </data>
+  <data name="RefusedPermission" xml:space="preserve">
+    <value>Refused Permission</value>
+  </data>
+  <data name="SavedSaccefully" xml:space="preserve">
+    <value>Saved Saccefully {0} </value>
+  </data>
+  <data name="NotFoundPhotos" xml:space="preserve">
+    <value>Not found photos</value>
+  </data>
+  <data name="ReviewRequest" xml:space="preserve">
+    <value>Review Your Request</value>
+  </data>
+  <data name="CannotSendDatatoNoOne" xml:space="preserve">
+    <value>Cannot Send Message to NoOne</value>
+  </data>
+</root>

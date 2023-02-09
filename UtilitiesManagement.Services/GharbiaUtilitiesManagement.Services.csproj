@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Services\Customer\CustomerDataService.cs~RFb520d5.TMP" />
+    <None Remove="Services\HR\DepartmentsService.cs~RF396bbf41.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.16.0" />
+    <PackageReference Include="EPPlus.Core" Version="1.5.4" />
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.21.90" />
+    <PackageReference Include="prometheus-net" Version="6.0.0" />
+    <PackageReference Include="RestSharp" Version="108.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="IServices\Customer\" />
+    <Folder Include="IServices\Technician\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UtilitiesManagement.DataAccess\GharbiaUtilitiesManagement.DataAccess.csproj" />
+    <ProjectReference Include="..\UtilitiesManagement.Domain\GharbiaUtilitiesManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

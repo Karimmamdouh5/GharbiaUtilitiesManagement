@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activated" xml:space="preserve">
+    <value>تم التفعيل</value>
+  </data>
+  <data name="CannotBeFound" xml:space="preserve">
+    <value>{0} ليست موجودة</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>الشركة</value>
+  </data>
+  <data name="ClientCategory" xml:space="preserve">
+    <value>تصنيف العميل</value>
+  </data>
+  <data name="CompanyBranch" xml:space="preserve">
+    <value>فرع الشركه</value>
+  </data>
+  <data name="CompanyIsNotActivated" xml:space="preserve">
+    <value>الشركة غير مفعلة</value>
+  </data>
+  <data name="DeActivated" xml:space="preserve">
+    <value>تم ايقاف التفعيل</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>لقد تم الحذف بنجاح</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>الادارة</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>تم الحفظ بنجاح</value>
+  </data>
+  <data name="Email_Password_Incorrect" xml:space="preserve">
+    <value>البريد الالكترونى او الرقم السرى غير صحيحه</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>حدث خطأ ما نرجو اعادة المحاوله</value>
+  </data>
+  <data name="Exists" xml:space="preserve">
+    <value>موجود</value>
+  </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>{0} موجود بالفعل</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+  <data name="LockTechnicalsLogins" xml:space="preserve">
+    <value>تم ايقاف تفعيل تسجيل الدخول للمستخدمين</value>
+  </data>
+  <data name="NotUpdate" xml:space="preserve">
+    <value>لم يتم التعديل</value>
+  </data>
+  <data name="Region" xml:space="preserve">
+    <value>المنطقة</value>
+  </data>
+  <data name="Section" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>المحافظة</value>
+  </data>
+  <data name="TaxOffice" xml:space="preserve">
+    <value>مأمورية الضرائب</value>
+  </data>
+  <data name="ThereIsActiveEmployeesRelatedToThisBranch" xml:space="preserve">
+    <value>لا يمكن ايقاف هذا الفرع نظرا لتواجد موظفيين نشطيين.</value>
+  </data>
+  <data name="UnLockTechnicalsLogins" xml:space="preserve">
+    <value>تم تفعيل تسجيل الدخول للمستخدمين</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>تم التعديل بنجاح</value>
+  </data>
+  <data name="UserDataIsIncorrect" xml:space="preserve">
+    <value>بيانات المستخدم غير صحيحة</value>
+  </data>
+  <data name="UserIsLoggedOut" xml:space="preserve">
+    <value>تم خروج المستخدم بنجاح</value>
+  </data>
+  <data name="UserNotExist" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
+  </data>
+  <data name="UserWithEmailExists" xml:space="preserve">
+    <value>هذا الايميل موجود بالفعل</value>
+  </data>
+  <data name="UserWithNameExists" xml:space="preserve">
+    <value>هذا الاسم موجود بالفعل</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>الصوره</value>
+  </data>
+  <data name="NotActive" xml:space="preserve">
+    <value>غير مفعل</value>
+  </data>
+  <data name="NotActiveNotUpdate" xml:space="preserve">
+    <value>حالتها غير مفعله للتعديل يرجى تغيير الحالة</value>
+  </data>
+  <data name="CompanyIsNotActive" xml:space="preserve">
+    <value>الشركة غير فعالة</value>
+  </data>
+  <data name="NotFoundMainBranchToCompany" xml:space="preserve">
+    <value>لا يمكن التعديل لان لا يوجد فرع رئيسى للشركه</value>
+  </data>
+  <data name="NotFoundData" xml:space="preserve">
+    <value>لا يوجد بيانات</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="UserIsAlreadyLoggedIn" xml:space="preserve">
+    <value>تم دخول هذا المستخدم بالفعل</value>
+  </data>
+  <data name="Technician" xml:space="preserve">
+    <value>الفنى</value>
+  </data>
+  <data name="HasAnyRelation" xml:space="preserve">
+    <value>لا يمكن المسح لانه مرتبط ببيانات اخرى داخل قاعدة البيانات</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>العنصر</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>بيانات</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>مسؤول</value>
+  </data>
+  <data name="ClientName" xml:space="preserve">
+    <value>االعميل</value>
+  </data>
+  <data name="UserWasLoggedOutBefore" xml:space="preserve">
+    <value>هذا المستخدم سجل خروج من قبل</value>
+  </data>
+  <data name="FinancialYear" xml:space="preserve">
+    <value>السنة المالية</value>
+  </data>
+  <data name="CanNotAddFinancialYear" xml:space="preserve">
+    <value>لايمكن اضافة السنة المالية لتعارضها مع اخري</value>
+  </data>
+  <data name="CanNotAddFinancialYearAsThereIsActiveOne" xml:space="preserve">
+    <value>لايمكن اضافة السنة المالية لوجود سنة أخري نشطة</value>
+  </data>
+  <data name="CanNotActivateFinancialYearAsThereIsActiveOne" xml:space="preserve">
+    <value>لايمكن تنشيط السنة المالية لوجود سنة أخري نشطة</value>
+  </data>
+  <data name="CompanyIsRequired" xml:space="preserve">
+    <value>الشركة مطلوبة</value>
+  </data>
+  <data name="BothOfCompanyAndFinancialYearRequired" xml:space="preserve">
+    <value>كلا من الشركه والسنه الماليه مطلوبين</value>
+  </data>
+  <data name="FinancialYearIsRequired" xml:space="preserve">
+    <value>السنة المالية مطلوبة</value>
+  </data>
+  <data name="BillBook" xml:space="preserve">
+    <value>دفتر الفاتورة</value>
+  </data>
+  <data name="CanNotAddFinancialYearAsThereIsDateNotConventioned" xml:space="preserve">
+    <value>التاريخ غير متوافق مع السنه</value>
+  </data>
+  <data name="CanNotAddBillBook" xml:space="preserve">
+    <value>لايمكن اضافة دفتر الفاتورة لتعارضه مع دفتر آخر</value>
+  </data>
+  <data name="ThisEmployeeIsNotTechnician" xml:space="preserve">
+    <value>هذا الموظف ليس فني</value>
+  </data>
+  <data name="FinancialYearIsNotActive" xml:space="preserve">
+    <value>السنة المالية غير مفعلة</value>
+  </data>
+  <data name="CannotDeleteItemHasRelativeData" xml:space="preserve">
+    <value>لا يمكن مسح عنصر مرتبط بغناصر اخرى</value>
+  </data>
+  <data name="PleaseChangeEmployeeActivationState" xml:space="preserve">
+    <value>يرجي قبل ذلك تعديل حالة الموظف الى مفعل</value>
+  </data>
+  <data name="TheEmployeeNotActive" xml:space="preserve">
+    <value>هذا الموظف غير مفعل</value>
+  </data>
+  <data name="ClientBranch" xml:space="preserve">
+    <value>فرع العميل</value>
+  </data>
+  <data name="ThereIs" xml:space="preserve">
+    <value>يوجد</value>
+  </data>
+  <data name="NumOfObjectsNotEqualNumOfUploadedImages" xml:space="preserve">
+    <value>عدد العملاء أو الفروع المضافة لا تساوي عدد الصور</value>
+  </data>
+  <data name="IsNotSuperAdmin" xml:space="preserve">
+    <value>هذا العنصر ليس له هذة الصلاحية</value>
+  </data>
+  <data name="ThisEmployeeIsNotTech" xml:space="preserve">
+    <value>هذا الموظف ليس فني</value>
+  </data>
+  <data name="ComplaintType" xml:space="preserve">
+    <value>نوع الشكوى</value>
+  </data>
+  <data name="MeterReading" xml:space="preserve">
+    <value>قراءة العداد</value>
+  </data>
+  <data name="Complaint" xml:space="preserve">
+    <value>الشكوى</value>
+  </data>
+  <data name="UpdatedCustomer" xml:space="preserve">
+    <value>تعديل بيانات العميل</value>
+  </data>
+  <data name="Customer" xml:space="preserve">
+    <value>العميل</value>
+  </data>
+  <data name="BillExist" xml:space="preserve">
+    <value>يوجد فاتورة مسجلة بنفس الرقم</value>
+  </data>
+  <data name="FailedSecondStageSave" xml:space="preserve">
+    <value>فشل المرحلة الثانية من التسجيل</value>
+  </data>
+  <data name="RefusedPermission" xml:space="preserve">
+    <value>صلاحية مرفوضة</value>
+  </data>
+  <data name="SavedSaccefully" xml:space="preserve">
+    <value>{0} تم حفظ </value>
+  </data>
+  <data name="NotFoundPhotos" xml:space="preserve">
+    <value>لا يوجد صور</value>
+  </data>
+  <data name="ReviewRequest" xml:space="preserve">
+    <value>راجع البيانات المرسله</value>
+  </data>
+  <data name="CannotSendDatatoNoOne" xml:space="preserve">
+    <value>لا يمكن ارسال الرسالة لقائمة أشخاص فارغة</value>
+  </data>
+</root>
