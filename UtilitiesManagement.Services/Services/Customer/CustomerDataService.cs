@@ -145,7 +145,7 @@ namespace UtilitiesManagement.Services.Services.Customer
 
 
 
-        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,long[] BlockIds)
+        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,int IssueDetailsId, long[] BlockIds)
         {
             try
             {
