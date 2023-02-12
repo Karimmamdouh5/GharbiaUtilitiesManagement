@@ -164,6 +164,9 @@
                     var LastReaderObject = _unitOfWork.Employees.GetFirstOrDefault(filter: x => x.IsReader != null && x.IsReader == true,orderBy: x => x.OrderByDescending(x => x.Id));
                     var LastCollectorObject = _unitOfWork.Employees.GetFirstOrDefault(filter: x => x.IsReader != null && x.IsReader == false, orderBy: x => x.OrderByDescending(x => x.Id));
 
+
+                    // GET The first Resource from the Runner View
+                    // Get The Second Resource from the Runner View
                     var NewEmployeeData = _mapper.Map<List<HrEmployee>>((await _unitOfWork.Employees.Remote_GetRunnerData(LastReaderObject != null ? long.Parse(LastReaderObject.Code!) : 0 , LastCollectorObject != null ? long.Parse(LastCollectorObject.Code!) : 0)));
                     await _unitOfWork.Employees.AddRangeAsync(NewEmployeeData);
                     await _unitOfWork.CompleteAsync();
