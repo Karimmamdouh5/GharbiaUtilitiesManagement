@@ -58,5 +58,8 @@
         [MaxLength(50)]
         public string? PreviousReadingIssueNumber { get; set; }
         public string? Address { get; set; }
+
+        [MaxLength(50)]
+        public string InstKey { get; set; } = "0";
     }
 }
