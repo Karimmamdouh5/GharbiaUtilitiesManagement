@@ -30,10 +30,11 @@
 
             modelBuilder.Entity<OprUpdatedCustomerType>()
                .HasData(
-                   new OprUpdatedCustomerType() { Id = 1, Name = "الموقع", SysName = "location" ,InsertDate = StaticDate, UpdateDate = StaticDate },
-                   new OprUpdatedCustomerType() { Id = 2, Name = "النشاط", SysName = "activity", InsertDate = StaticDate, UpdateDate = StaticDate },
-                   new OprUpdatedCustomerType() { Id = 3, Name = "عدد الوحدات", SysName = "unitsnumber", InsertDate = StaticDate, UpdateDate = StaticDate },
-                   new OprUpdatedCustomerType() { Id = 4, Name = "صورة العميل", SysName = "customerimage", InsertDate = StaticDate, UpdateDate = StaticDate }
+                   new OprUpdatedCustomerType() { Id = 1, Name = "الموقع",ImageRequired=false, SysName = "location" ,InsertDate = StaticDate, UpdateDate = StaticDate },
+                   new OprUpdatedCustomerType() { Id = 2, Name = "النشاط", ImageRequired = false, SysName = "activity", InsertDate = StaticDate, UpdateDate = StaticDate },
+                   new OprUpdatedCustomerType() { Id = 3, Name = "عدد الوحدات", ImageRequired = false, SysName = "unitsnumber", InsertDate = StaticDate, UpdateDate = StaticDate },
+                   new OprUpdatedCustomerType() { Id = 4, Name = "صورة العميل", ImageRequired = true, SysName = "customerimage", InsertDate = StaticDate, UpdateDate = StaticDate },
+                   new OprUpdatedCustomerType() { Id = 5, Name = "الرقم القومى", ImageRequired = true, SysName = "nationalid", InsertDate = StaticDate, UpdateDate = StaticDate }
                );
 
             modelBuilder.Entity<HrStatus>()

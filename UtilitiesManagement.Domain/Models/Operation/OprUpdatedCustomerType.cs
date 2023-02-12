@@ -10,5 +10,6 @@
         [MaxLength(200)]
         public string Name { get; set; }
         public string SysName { get; set; }
+        public bool ImageRequired { get; set; }
     }
 }
