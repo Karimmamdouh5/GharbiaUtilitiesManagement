@@ -77,6 +77,7 @@
                 (searchParametersRequest.StateId == x.CustomerData.Block.Area.City.State_Id || searchParametersRequest.StateId == null)
                 &&
                 (searchParametersRequest.UpdatingTypeId == x.UpdatedCustomerType_Id || searchParametersRequest.UpdatingTypeId == null)
+               
                 &&
                 (searchParametersRequest.IsRevised == x.IsRevised || searchParametersRequest.IsRevised == null)
 
@@ -123,7 +124,8 @@
                     BranchName = x.Employee.Branch.BranchName,
 
                     IssueId = x.Issue_Id,
-                    IssueName = x.Issue.IssueName
+                    IssueName = x.Issue.IssueName,
+                    IsRevised = x.IsRevised
                 }, orderBy: x =>
                   x.OrderByDescending(x => x.Id))
                 };

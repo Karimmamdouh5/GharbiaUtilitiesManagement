@@ -84,6 +84,7 @@ namespace UtilitiesManagement.Services.Services.Bill
                     TotalAmount = q.Transactions.Sum(a => a.Amount),
                     IsRePrint = q.IsRePrint,
                     IsPayment = q.BillPaymentSafe_Id != null,
+                    PaymentType = q.PaymentType!.Name,
                     BillTransactions = q.Transactions.Select(q => new BillTransactionResponse
                     {
                         Amount = q.Amount,

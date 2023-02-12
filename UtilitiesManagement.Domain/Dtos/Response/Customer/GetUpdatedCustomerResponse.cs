@@ -22,6 +22,7 @@
         public double? Y { get; set; }
         public string SysName { get; set; }
         public string? NationalId { get; set; }
+        public bool? IsRevised { get; set; }
 
 
         public string? Cust_NationalId { get; set; }
@@ -30,7 +31,8 @@
         public double? Cust_X { get; set; }
         public double? Cust_Y { get; set; }
         public string Cust_Activity { get; set; }
-
+      
+        
 
     }
 }

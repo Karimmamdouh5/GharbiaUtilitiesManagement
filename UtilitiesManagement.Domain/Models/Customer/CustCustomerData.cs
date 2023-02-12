@@ -64,5 +64,6 @@
       
         [MaxLength(50)]
         public string? NationalId { get; set; }
+        public ICollection<OprMeterReading> OprMeterReading { get; set; }  =new List<OprMeterReading>();
     }
 }

@@ -66,8 +66,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                  (searchParametersRequest.EmployeeId == x.Employee_Id || searchParametersRequest.EmployeeId == null)
                  &&
                  (x.IsPublic == searchParametersRequest.IsPublic || searchParametersRequest.IsPublic == null)
-                 &&
-                 (x.IsPublic == searchParametersRequest.IsPublic || searchParametersRequest.IsPublic == null)
+                
                  &&
                  (x.IsCustomerComplaint == searchParametersRequest.IsCustomerComplaint || searchParametersRequest.IsCustomerComplaint == null)
                  &&

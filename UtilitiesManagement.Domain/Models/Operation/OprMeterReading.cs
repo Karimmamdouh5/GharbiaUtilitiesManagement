@@ -37,7 +37,7 @@
         public string? InternetSpeed { get; set; }
 
         public DateTime? MeterReadingDate { get; set; }
-        public string? PreviousReading{ get; set; }
+        public double? PreviousReading{ get; set; }
         public string? PreviousReadingIssueNumber{ get; set; }
         
     }

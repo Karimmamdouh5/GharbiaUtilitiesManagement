@@ -15,7 +15,7 @@
         public string CustomerCode { get; set; }
         public string Notes { get; set; }
         public double Value { get; set; }
-        public string? LastReading { get; set; }
+        public double? LastReading { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public string MeterStatus { get; set; }
@@ -24,6 +24,7 @@
         public DateTime IssueDate { get; set; }
         public bool IsRevised { get; set; }
         public bool IsPosted { get; set; } 
+        public bool IsUpnormalReading { get; set; } 
         public DateTime? MeterReadingDate { get; set; }
 
     

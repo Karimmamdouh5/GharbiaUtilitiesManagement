@@ -17,8 +17,8 @@
 
         [HttpGet(ApiRoutes.CustomerData.GetAllCustomerDataByCollector)]
         [Authorize(Permissions.Customer.View)]
-        public async Task<IActionResult> GetAllCustomerDataByCollectorAsync(long collectorId, [FromQuery] long[] BlockIds) =>
-            Ok(await _customerDataService.GetAllCustomerDataByCollectorAsync(collectorId, BlockIds));
+        public async Task<IActionResult> GetAllCustomerDataByCollectorAsync(long collectorId,int IssueDetailsId, [FromQuery] long[] BlockIds) =>
+            Ok(await _customerDataService.GetAllCustomerDataByCollectorAsync(collectorId,IssueDetailsId, BlockIds));
 
         [HttpGet(ApiRoutes.CustomerData.GetCustomerDataProfile)]
         [Authorize(Permissions.Customer.View)]

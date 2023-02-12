@@ -140,7 +140,7 @@ namespace UtilitiesManagement.Services.Services.Customer
             }
         }
 
-        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,long[] BlockIds)
+        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id, int IssueDetailsId, long[] BlockIds)
         {
             try
             {
@@ -183,8 +183,9 @@ namespace UtilitiesManagement.Services.Services.Customer
                     PreviousReading = x.PreviousReading,
                     PreviousReadingIssueNumber = x.PreviousReadingIssueNumber,
                     Address = x.Address,
+                    HasReading=x.OprMeterReading.Any(a=>a.Issue_Details_Id== IssueDetailsId)
                     //CountBill= GetRemoteTotalBillsForCustomers.Any(a=>a.CustomerID==1)? GetRemoteTotalBillsForCustomers.FirstOrDefault(a => a.CustomerID == 1)!.BillsCounts:0 ,
-                   //TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == x.Id).Select(a => a.BillsTotalAmount).SingleOrDefault()
+                    //TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == x.Id).Select(a => a.BillsTotalAmount).SingleOrDefault()
                 });
 
                 result.ToList().ForEach(r =>

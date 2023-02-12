@@ -24,6 +24,7 @@ namespace UtilitiesManagement.Domain.Dtos.Response.Bill
         public double TotalAmount{ get; set; }
         public bool IsRePrint { get; set; }
         public bool IsPayment { get; set; }
+        public string? PaymentType { get; set; } = "";
     }
     public class BillTransactionResponse
     {
