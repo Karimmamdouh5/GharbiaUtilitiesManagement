@@ -1,4 +1,5 @@
 ﻿using UtilitiesManagement.Domain.ViewModels.Customer;
+using static UtilitiesManagement.Domain.Constants.Permissions.Permissions;
 
 namespace UtilitiesManagement.Services.Services.Customer
 {
@@ -8,14 +9,16 @@ namespace UtilitiesManagement.Services.Services.Customer
         private readonly IStringLocalizer<SharedResource> _sharLocalizer;
         private readonly ILoggingRepository _customLog;
         private readonly IMapper _mapper;
+        private readonly HttpContextAccessor _accessor;
 
         public CustomerDataService(IUnitOfWork unitOfWork, IStringLocalizer<SharedResource> sharLocalizer,
-                                   ILoggingRepository loggingRepository, IMapper mapper)
+                                   ILoggingRepository loggingRepository, IMapper mapper,HttpContextAccessor accessor)
         {
             _unitOfWork = unitOfWork;
             _sharLocalizer = sharLocalizer;
             _customLog = loggingRepository;
             _mapper = mapper;
+            _accessor = accessor;
         }
 
         #region Customer data and manage remotely
@@ -106,7 +109,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                 SubscriptionStartDate = x.SubscriptionStartDate,
                 PreviousReading = x.PreviousReading,
                 PreviousReadingIssueNumber = x.PreviousReadingIssueNumber,
-                Address=x.Address,
+                Address = x.Address,
             })
                 };
 
@@ -149,7 +152,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                 var GetRemoteTotalBillsForCustomers = await _unitOfWork.CustomerData.GetCustomersTotalBillsAsync(Collector_Id, string.Join(",", BlocksCodes));
 
                 //var GetRemoteTotalBillsForCustomers= new List<GetCustomersTotalBills_ViewModel> { new GetCustomersTotalBills_ViewModel { CustomerID = 0, BillsCounts = 0, BillsTotalAmount = 0 } };
-                var result = await _unitOfWork.CustomerData.GetSpecificSelectAsync(x => (BlockIds.Contains(x.Block_Id) || BlockIds==null || BlockIds.Count() == 0) && x.Block.EmployeeBlocks.Any(a => a.Collector_Id == Collector_Id),
+                var result = await _unitOfWork.CustomerData.GetSpecificSelectAsync(x => (BlockIds.Contains(x.Block_Id) || BlockIds == null || BlockIds.Count() == 0) && x.Block.EmployeeBlocks.Any(a => a.Collector_Id == Collector_Id),
                  orderBy: x => x.OrderBy(a => a.Block_Id),
                 select: x => new GetCustomerDataForCollectorResponse
                 {
@@ -165,7 +168,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                     ActivityStartIsuue = x.ActivityStarIssue,
                     ActualActivity = x.ActualActivity,
                     ActualName = x.ActualName,
-                    BranchName= x.Block.Area.City.State.Branch.BranchName,
+                    BranchName = x.Block.Area.City.State.Branch.BranchName,
                     BranchId = x.Block.Area.City.State.Branch_Id,
                     AreaId = x.Block.Area_Id,
                     AreaName = x.Block.Area.AreaName,
@@ -183,14 +186,14 @@ namespace UtilitiesManagement.Services.Services.Customer
                     PreviousReading = x.PreviousReading,
                     PreviousReadingIssueNumber = x.PreviousReadingIssueNumber,
                     Address = x.Address,
-                    HasReading=x.OprMeterReading.Any(a=>a.Issue_Details_Id== IssueDetailsId)
+                    HasReading = x.OprMeterReading.Any(a => a.Issue_Details_Id == IssueDetailsId)
                     //CountBill= GetRemoteTotalBillsForCustomers.Any(a=>a.CustomerID==1)? GetRemoteTotalBillsForCustomers.FirstOrDefault(a => a.CustomerID == 1)!.BillsCounts:0 ,
                     //TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == x.Id).Select(a => a.BillsTotalAmount).SingleOrDefault()
                 });
 
                 result.ToList().ForEach(r =>
                 {
-                    r.CountBill = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == r.Id).Select(a=>a.BillsCounts).FirstOrDefault(); r.TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == r.Id).Select(a=>a.BillsTotalAmount).FirstOrDefault();
+                    r.CountBill = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == r.Id).Select(a => a.BillsCounts).FirstOrDefault(); r.TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == r.Id).Select(a => a.BillsTotalAmount).FirstOrDefault();
                 });
                 if (result == null || result.ToList().Count == 0)
                 {
@@ -224,7 +227,7 @@ namespace UtilitiesManagement.Services.Services.Customer
             }
         }
 
-       
+
         public async Task<Response<CustCustomerProfileResponse>> GetCustomerDataProfileAsync(FilterForCustomerProfileRequest filterForCustomerProfileRequest)
         {
             try
@@ -268,7 +271,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                    filterForCustomerProfileRequest.CustomerCode || x.Id == filterForCustomerProfileRequest
                    .CustomerId,
                    //: x.Id == customerId ,
-                  
+
                    select: x => new CustCustomerProfileResponse()
                    {
                        Id = x.Id,
@@ -410,11 +413,11 @@ namespace UtilitiesManagement.Services.Services.Customer
             }
             catch (Exception ex)
             {
-                await _customLog.LogExceptionInDb(ex,"");
+                await _customLog.LogExceptionInDb(ex, "");
                 return new Response<GetCustomerDataResponse>()
                 {
                     Message = _sharLocalizer[SDLocalization.Error],
-                    Errors = new[] {ex.Message }
+                    Errors = new[] { ex.Message }
                 };
             }
 
@@ -451,11 +454,11 @@ namespace UtilitiesManagement.Services.Services.Customer
 
                 //Get all the new customer activity by calling the remote stored procedure and get the records after our last record id
 
-                var existingCustomerActivities =  (await _unitOfWork.CustomerActivities.GetAllAsync(filter: x => true)).ToList();
+                var existingCustomerActivities = (await _unitOfWork.CustomerActivities.GetAllAsync(filter: x => true)).ToList();
 
                 var LastExistingIdCustomerActivity = existingCustomerActivities.LastOrDefault() != null ? existingCustomerActivities.LastOrDefault().Id : 0;
 
-                var RemoteData = ( await _unitOfWork.CustomerActivities.GetRemoteCustomerActivityAsync()).ToList().Select(obj => new CustCustomerActivity() { Id = obj.Id + LastExistingIdCustomerActivity, Name = obj.Name}).ToList();
+                var RemoteData = (await _unitOfWork.CustomerActivities.GetRemoteCustomerActivityAsync()).ToList().Select(obj => new CustCustomerActivity() { Id = obj.Id + LastExistingIdCustomerActivity, Name = obj.Name }).ToList();
 
                 await _unitOfWork.CustomerActivities.AddRangeAsync(RemoteData.Where(obj => !existingCustomerActivities.Any(y => y.Name == obj.Name)));
 
@@ -473,7 +476,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                 // Use Truncate and remove Delete 
                 //await _unitOfWork.CustomerData.GetRemoteCustomerDataAsync(lastCusotmerId != null ? lastCusotmerId.Id : 0);
 
-                var customerActivitiesData = ( await _unitOfWork.CustomerActivities.GetSpecificSelectAsync(filter: obj => true , select: obj => new SelectIntListResponse() { Id = obj.Id , Name = obj.Name})).ToList();
+                var customerActivitiesData = (await _unitOfWork.CustomerActivities.GetSpecificSelectAsync(filter: obj => true, select: obj => new SelectIntListResponse() { Id = obj.Id, Name = obj.Name })).ToList();
 
                 var remoteData = await _unitOfWork.CustomerData.GetRemoteCustomerDataAsync(lastCusotmerId != null ? lastCusotmerId.Id : 0);
                 var addingDataCustomer = _mapper.Map<IEnumerable<CustCustomerData>>(remoteData).ToList();
@@ -511,6 +514,124 @@ namespace UtilitiesManagement.Services.Services.Customer
                 };
             }
         }
+
+
+        public async Task<Response<GetMeterReadingForAllCustomersResponse>> GetAllMeterReadingsAsync(SearchParametersForMeterReadingsRequest searchParametersRequest)
+        {
+            try
+            {
+
+                string resultMsg = _sharLocalizer[SDLocalization.NotFoundData];
+                if (searchParametersRequest.EndDate != null)
+                    searchParametersRequest.EndDate = searchParametersRequest.EndDate.Value.AddHours(23)
+                        .AddMinutes(59).AddSeconds(59);
+                long? customerId = null;
+                if (!string.IsNullOrEmpty(searchParametersRequest.CustomerCode))
+                {
+                    var cusdtomerData = await _unitOfWork.CustomerData.GetFirstOrDefaultAsync(x => x.Code == searchParametersRequest.CustomerCode);
+
+                    if (cusdtomerData == null)
+                        return new Response<GetMeterReadingForAllCustomersResponse>()
+                        {
+                            Data = new GetMeterReadingForAllCustomersResponse(),
+                            IsNotFound = true,
+                            Errors = new string[] { resultMsg },
+                            Message = resultMsg
+                        };
+                    customerId = cusdtomerData.Id;
+                }
+                string UserId = _accessor!.HttpContext == null ? "" : _accessor!.HttpContext!.User.GetUserId();
+                var BranchesUsersIds = await _unitOfWork.Users.GetAssignedBranches(UserId);
+
+                Expression<Func<CustCustomerData, bool>> filter = x =>
+                (x.OprMeterReading.Any(a=> BranchesUsersIds.Contains(a.Employee.Branch_Id)))
+                &&
+                (x.OprMeterReading.Any(a=>a.Employee_Id == searchParametersRequest.EmployeeId) || searchParametersRequest.EmployeeId == null) &&
+                (x.OprMeterReading.Any(a=>a.MeterReadingDate >= searchParametersRequest.StartDate) || searchParametersRequest.StartDate == null)
+                &&
+                (x.OprMeterReading.Any(a=>a.MeterReadingDate <= searchParametersRequest.EndDate) || searchParametersRequest.EndDate == null)
+                &&
+                customerId == null ?
+
+                (x.OprMeterReading.Any(a=>a.Customer_Id ==searchParametersRequest.CustomerId ) || searchParametersRequest.CustomerId == null)
+                &&
+                (x.OprMeterReading.Any(a=>a.CustomerData.Code== searchParametersRequest.CustomerCode) || searchParametersRequest.CustomerCode == null)
+
+                &&
+                (x.OprMeterReading.Any(a=>a.Employee.Branch_Id== searchParametersRequest.BranchId))
+                &&
+                (x.OprMeterReading.Any(a=>a.Issue_Details_Id== searchParametersRequest.IssueDetailsId))
+
+                &&
+                (x.OprMeterReading.Any(a => a.CustomerData.Block.Area_Id== searchParametersRequest.AreaId) || searchParametersRequest.AreaId == null)
+                &&
+                (x.OprMeterReading.Any(a => a.CustomerData.Block_Id== searchParametersRequest.BlockId) || searchParametersRequest.BlockId == null)
+                &&
+                (x.OprMeterReading.Any(a => a.CustomerData.Block.Area.City_Id==searchParametersRequest.CityId) || searchParametersRequest.CityId == null)
+                &&
+                (x.OprMeterReading.Any(a => a.CustomerData.Block.Area.City.State_Id==searchParametersRequest.StateId) || searchParametersRequest.StateId == null)
+                &&
+                (x.OprMeterReading.Any(a => a.IsRevised == searchParametersRequest.IsRevised) || searchParametersRequest.IsRevised == null)
+               
+                : x.Id == customerId;
+
+                var result = new GetMeterReadingForAllCustomersResponse
+                {
+                    TotalRecords = await _unitOfWork.CustomerData.Count(filter: filter),
+
+                    Data = await _unitOfWork.CustomerData.GetSpecificSelectAsync(filter,
+                     take: searchParametersRequest.PageSize,
+                     skip: (searchParametersRequest.PageNumber - 1) * searchParametersRequest.PageSize,
+                select: x => new GetMeterReadingForAllCustomers
+                {
+                    CustomerId = x.Id,
+                    CollectorName = x.OprMeterReading.MaxBy(m => m.Id)!.Employee.Name,
+                    CustomerName = x.Name!,
+                    LastReading = x.OprMeterReading.MaxBy(m => m.Id)!.PreviousReading,
+                    IsUpnormalReading = (x.OprMeterReading.MaxBy(m => m.Id)!.Value - x.OprMeterReading.MaxBy(m => m.Id)!.PreviousReading) > x.CustomerActivity.ReadingAvg,
+                    MeterStatus = x.OprMeterReading.MaxBy(m => m.Id)!.MeterStatus.Name,
+                    Value = x.OprMeterReading.MaxBy(m => m.Id)!.Value,
+                    Notes = x.OprMeterReading.MaxBy(m => m.Id)!.Notes!,
+                    ReadingImagePath = x.OprMeterReading.MaxBy(m => m.Id)!.ReadingImagePath!,
+                    X = x.OprMeterReading.MaxBy(m => m.Id)!.X,
+                    Y = x.OprMeterReading.MaxBy(m => m.Id)!.Y,
+                    MeterReadingDate = x.OprMeterReading.MaxBy(m => m.Id)!.MeterReadingDate,
+                    BranchName = x.OprMeterReading.MaxBy(m => m.Id)!.Employee.Branch.BranchName,
+                    IssueName = x.OprMeterReading.MaxBy(m => m.Id)!.IssueDetails.Issue.IssueName,
+
+
+
+
+                }, orderBy: x =>
+                              x.OrderByDescending(x => x.Id))
+                };
+
+                if (result == null || result.Data.ToList().Count == 0)
+                    return new Response<GetMeterReadingForAllCustomersResponse>()
+                    {
+                        Data = new GetMeterReadingForAllCustomersResponse(),
+                        IsNotFound = true,
+                        Errors = new string[] { resultMsg },
+                        Message = resultMsg
+                    };
+
+                return new Response<GetMeterReadingForAllCustomersResponse>()
+                {
+                    IsSuccess = true,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
+            {
+                await _customLog.LogExceptionInDb(ex, JsonConvert.SerializeObject(searchParametersRequest), LogType.Bug);
+                return new Response<GetMeterReadingForAllCustomersResponse>()
+                {
+                    Errors = new string[] { _sharLocalizer[SDLocalization.Error] },
+                    Message = ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message)
+                };
+            }
+        }
+
         #endregion
     }
 

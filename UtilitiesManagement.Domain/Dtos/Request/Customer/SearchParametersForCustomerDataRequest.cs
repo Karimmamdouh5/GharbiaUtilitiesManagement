@@ -12,5 +12,6 @@
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public bool? IsRevised { get; set; }
+        public int IssueDetailsId { get; set;}
     }
 }
