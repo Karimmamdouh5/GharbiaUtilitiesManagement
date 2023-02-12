@@ -21,6 +21,7 @@
         public int CustomerStatus_Id { get; set; }
         public string? CustomerActivity_Id { get; set; }
         public string? Address { get; set; }
+        public string InstKey { get; set; }
     }
  
 }
