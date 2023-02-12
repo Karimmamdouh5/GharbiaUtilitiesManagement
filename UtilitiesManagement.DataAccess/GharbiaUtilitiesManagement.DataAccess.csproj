@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\Utilities\" />
     <Folder Include="Migrations\Align\" />
     <Folder Include="Repositories\Inventory\" />
   </ItemGroup>

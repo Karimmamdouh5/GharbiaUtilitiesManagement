@@ -6,7 +6,7 @@ namespace  UtilitiesManagement.Services.IServices.Customer
     {
         #region Customer data and manage remotely
         Task<Response<GetCustomerResponse>> GetAllCustomerDataAsync(SearchParametersForCustomerDataRequest searchParametersForCustomerDataRequest);
-        Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id, long[] BlockIds);
+        Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,int IssueDetailsId, long[] BlockIds);
         Task<Response<CustCustomerProfileResponse>> GetCustomerDataProfileAsync(FilterForCustomerProfileRequest filterForCustomerProfileRequest);
         Task<Response<IEnumerable<SharSelectListGroupResponse>>> ListOfCustomer(FilterWithTwoFlagsCustomerRequest filterWithTwoFlagsCustomerRequest);
         Task<Response<GetCustomerDataResponse>> ActiveOrDeActiveForCompletedDataAsync(int customerDataId);

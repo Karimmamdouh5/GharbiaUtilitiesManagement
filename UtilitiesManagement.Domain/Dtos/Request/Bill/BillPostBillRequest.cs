@@ -9,6 +9,7 @@ namespace UtilitiesManagement.Domain.Dtos.Request.Bill
         public string CustomerName { get; set; }
         public string CustomerActivity { get; set; } 
         public long Employee_Id { get; set; } 
+        public int PaymentType_Id { get; set; } 
         public string Notes { get; set; }
         public DateTime PayDate { get; set; }
         public double X { get; set; }

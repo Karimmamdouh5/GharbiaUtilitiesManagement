@@ -1,7 +1,7 @@
 ﻿namespace UtilitiesManagement.Domain.Models.Bill
 {
     [Table("Bill_PaymentTransactions")]
-    public class BillPaymentTransaction
+    public class BillPaymentTransaction : BaseEntity
     {
         [Column("ID")]
         [Key]

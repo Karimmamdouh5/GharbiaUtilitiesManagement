@@ -7,6 +7,7 @@
 
         public double TotalIndebtedness { get; set; } = 0;
         public int CountBill { get; set; } = 0;
+        public bool HasReading { get; set; } = false;
 
     }
 }

@@ -108,7 +108,8 @@ namespace UtilitiesManagement.Services.Services.Operation
                     IsRevised = x.IsRevised,
                     IssueDate = x.IssueDetails.Issue.IssueDate,
                     IssueStatus = x.IssueDetails.Issue.Status,
-                    LastReading = x.CustomerData.PreviousReading,
+                    LastReading = x.PreviousReading,
+                    IsUpnormalReading =(x.Value- x.PreviousReading)> x.CustomerData.CustomerActivity.ReadingAvg,
                     MeterStatus = x.MeterStatus.Name,
                     Value = x.Value,
                     Notes = x.Notes!,
@@ -116,7 +117,6 @@ namespace UtilitiesManagement.Services.Services.Operation
                     X = x.X,
                     Y = x.Y,
                     MeterReadingDate = x.MeterReadingDate,
-
                     BlockId = x.CustomerData.Block_Id,
                     BlockName = x.CustomerData.Block.BlockName,
 

@@ -19,6 +19,8 @@
         public string? PublicAddress { get; set; }
         public long? BlockId { get; set; }
 
+        public bool? IsCustomerComplaint { get; set; }
+
         //public string? ImagePath { get; set; }
         //public IFormFile? Image { get; set; }
     }

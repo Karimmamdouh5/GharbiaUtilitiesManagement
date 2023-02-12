@@ -11,6 +11,8 @@
         public double? X { get; set; }
         public double? Y { get; set; }
         public string? ImagePath { get; set; }
+        [StringLength(50)]
+        public string? NationalId { get; set; }
         public int? NumOfUnits { get; set; }
         public bool IsRevised { get; set; }
 
@@ -33,7 +35,6 @@
         public int? CustomerActivity_Id { get; set; }
         [ForeignKey(nameof(CustomerActivity_Id))]
         public CustCustomerActivity CustomerActivity { get; set; }
-
         public string? InternetSpeed { get; set; }
     }
 }
