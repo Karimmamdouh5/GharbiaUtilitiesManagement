@@ -3,7 +3,7 @@
 namespace UtilitiesManagement.Domain.Models.Bill
 {
     [Table("Bill_PaymentSafes")]
-    public class BillPaymentSafe
+    public class BillPaymentSafe : BaseEntity
     {
         [Column("ID")]
         [Key]

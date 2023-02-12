@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UtilitiesManagement.Domain.Models.Bill
 {
     [Table("Bill_PayDataLogDetails")]
-    public class PayDataLogDetails
+    public class PayDataLogDetails : BaseEntity
     {
         [Column("ID")]
         [Key]

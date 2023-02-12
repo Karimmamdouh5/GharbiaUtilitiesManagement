@@ -13,6 +13,14 @@
                    new OprMeterStatus() { Id = 17, Name = "تقديرية", InsertDate = DateTime.Now, UpdateDate = DateTime.Now },
                    new OprMeterStatus() { Id = 18, Name = "صحيحة", InsertDate = DateTime.Now, UpdateDate = DateTime.Now }
                );
+            
+            modelBuilder.Entity<BillPaymentType>()
+               .HasData(
+                   new BillPaymentType() { Id = 1,SysName="cash", Name = "كاش", InsertDate = DateTime.Now, UpdateDate = DateTime.Now },
+                   new BillPaymentType() { Id = 2,SysName = "cheque", Name = "شيك", InsertDate = DateTime.Now, UpdateDate = DateTime.Now },
+                   new BillPaymentType() { Id = 3,SysName = "visa", Name = "فيزا", InsertDate = DateTime.Now, UpdateDate = DateTime.Now }
+                  
+               );
 
             modelBuilder.Entity<CustCustomerStatus>()
                 .HasData(

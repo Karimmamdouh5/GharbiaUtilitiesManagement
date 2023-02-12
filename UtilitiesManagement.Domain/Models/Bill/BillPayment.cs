@@ -3,7 +3,7 @@
 namespace UtilitiesManagement.Domain.Models.Bill
 {
     [Table("Bill_Payment")]
-    public class BillPayment
+    public class BillPayment : BaseEntity
     {
         [Column("ID")]
         [Key] 
@@ -17,6 +17,11 @@ namespace UtilitiesManagement.Domain.Models.Bill
         public BillPaymentSafe? billPaymentSafe { get; set; }
         [ForeignKey(nameof(Employee_Id))]
         public HrEmployee Employee { get; set; }
+
+        public int PaymentType_Id { get; set; }=1;
+        [ForeignKey(nameof(PaymentType_Id))]
+        public BillPaymentType PaymentType { get; set; }
+
         [MaxLength(500)]
         public string Notes { get; set; }
         public DateTime PayDate { get; set; }
