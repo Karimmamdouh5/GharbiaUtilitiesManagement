@@ -18,7 +18,7 @@ namespace UtilitiesManagement.Domain.Models.Bill
         [ForeignKey(nameof(Employee_Id))]
         public HrEmployee Employee { get; set; }
 
-        public int PaymentType_Id { get; set; }=1;
+        public int? PaymentType_Id { get; set; }
         [ForeignKey(nameof(PaymentType_Id))]
         public BillPaymentType PaymentType { get; set; }
 

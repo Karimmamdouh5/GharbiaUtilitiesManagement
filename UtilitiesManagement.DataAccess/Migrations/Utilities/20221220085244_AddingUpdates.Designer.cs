@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UtilitiesManagement.DataAccess.DataContext;
 
@@ -11,9 +12,10 @@ using UtilitiesManagement.DataAccess.DataContext;
 namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 {
     [DbContext(typeof(UtilitiesDbContext))]
-    partial class UtilitiesDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221220085244_AddingUpdates")]
+    partial class AddingUpdates
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,125 +23,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("GharbiaUtilitiesManagement.Domain.Models.Shared.SharMainTable_Bills", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("ACTIVITY_TYPE")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<long?>("ACTIVITY_TYPE_Id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ADDRESS")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ASSIGNED_TO")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("BILL_AMOUNT")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("BILL_KEY")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("BILL_PRINTED_DATE")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<long?>("BRANCH_Id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("BRANCH_NAME")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<long?>("Bill_ID")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Block_Id")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("CURRENT_READING")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("CUSTOMER_NAME")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("CUST_ID")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("CUST_KEY")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LAST_READING")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("NUMBER_OF_UNITS")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Shar_Bills_Temp");
-                });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillBillsData", b =>
                 {
@@ -238,11 +121,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillIssue", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int?>("CompanyTenantId")
                         .HasColumnType("int");
@@ -300,11 +180,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillIssueDetail", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("BillEndNum")
                         .HasColumnType("int");
@@ -374,39 +251,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<long?>("BillPaymentSafe_Id")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("CollectionDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
 
                     b.Property<long>("CustomerData_Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<long>("Employee_Id")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool?>("IsCollected")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRePrint")
@@ -420,16 +274,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<DateTime>("PayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("PaymentType_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<double>("X")
                         .HasColumnType("float");
 
@@ -438,75 +282,11 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BillPaymentSafe_Id");
-
                     b.HasIndex("CustomerData_Id");
 
                     b.HasIndex("Employee_Id");
 
-                    b.HasIndex("PaymentType_Id");
-
                     b.ToTable("Bill_Payment");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentSafe", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
-
-                    b.Property<int>("BillSafe_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("HrEmployee_Id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsPosted")
-                        .HasColumnType("bit");
-
-                    b.Property<double>("TotalAmount")
-                        .HasColumnType("float");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BillSafe_Id");
-
-                    b.HasIndex("HrEmployee_Id");
-
-                    b.ToTable("Bill_PaymentSafes");
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentTransaction", b =>
@@ -527,33 +307,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<long>("Bill_Id")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BillPayment_Id");
@@ -561,85 +314,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasIndex("Bill_Id");
 
                     b.ToTable("Bill_PaymentTransactions");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SysName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bill_PaymentType");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "كاش",
-                            SysName = "cash",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "شيك",
-                            SysName = "cheque",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "فيزا",
-                            SysName = "visa",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPrintLog", b =>
@@ -699,52 +373,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasIndex("UserId");
 
                     b.ToTable("Bill_PrintLog");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillSafe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Bill_Safes");
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.PayDataLog", b =>
@@ -816,35 +444,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<long>("Bill_Id")
                         .HasColumnType("bigint");
 
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<int?>("PayDataLogId")
                         .HasColumnType("int");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -886,9 +487,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<double>("ReadingAvg")
-                        .HasColumnType("float");
-
                     b.Property<string>("UpdateBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -908,8 +506,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnName("ID");
 
                     b.Property<string>("ActivityStarIssue")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("ActualActivity")
                         .HasMaxLength(200)
@@ -927,8 +526,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int?>("CompanyTenantId")
                         .HasColumnType("int");
@@ -940,6 +539,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("bit");
 
                     b.Property<string>("CustomerStartIssue")
+                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -954,6 +554,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImagePath")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InsertBy")
@@ -962,11 +563,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("InstKey")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("IsDataComplete")
                         .HasColumnType("bit");
@@ -979,15 +575,17 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("MeterDiameter")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("MeterStartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MeterStartIssue")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<int>("MeterStartReading")
                         .HasColumnType("int");
@@ -996,20 +594,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("NationalId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<int>("NumOfUnits")
                         .HasColumnType("int");
 
                     b.Property<string>("PreviousReading")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PreviousReadingIssueNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("SubscriptionStartDate")
                         .HasMaxLength(6)
@@ -1037,134 +631,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasIndex("CustomerStatus_Id");
 
                     b.ToTable("Cust_CustomerData");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Customer.CustCustomerDataTemp", b =>
-                {
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint")
-                        .HasColumnName("ID");
-
-                    b.Property<string>("ActivityStarIssue")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ActualActivity")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<string>("ActualName")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("Block_Id")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int?>("CompanyTenantId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerActivity_Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("CustomerHasSewage")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("CustomerStartIssue")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("CustomerStatus_Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DeleteBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InsertBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("InsertDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsDataComplete")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MeterChassisNum")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("MeterDiameter")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("MeterStartDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("MeterStartIssue")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("MeterStartReading")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("NumOfUnits")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PreviousReading")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("PreviousReadingIssueNumber")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("SubscriptionStartDate")
-                        .HasMaxLength(6)
-                        .HasColumnType("nvarchar(6)");
-
-                    b.Property<string>("UpdateBy")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<double?>("X")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Y")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Cust_CustomerDataTemp");
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Customer.CustCustomerStatus", b =>
@@ -1208,26 +674,13 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasKey("Id");
 
                     b.ToTable("Cust_CustomerStatus");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "سارى",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.HR.HrEmployee", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<long>("Branch_Id")
                         .HasColumnType("bigint");
@@ -1264,9 +717,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("IsReader")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsTechnician")
@@ -1359,11 +809,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.HR.HrEmployeeBlocks", b =>
                 {
                     b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("ID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<long>("Block_Id")
                         .HasColumnType("bigint");
@@ -1435,42 +882,42 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1472),
                             IsDeleted = false,
                             Name = "يعمل",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1472)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1474),
                             IsDeleted = false,
                             Name = "تمت اقالتة",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1474)
                         },
                         new
                         {
                             Id = 3,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1498),
                             IsDeleted = false,
                             Name = "أجازة",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1499)
                         },
                         new
                         {
                             Id = 4,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1500),
                             IsDeleted = false,
                             Name = "معاش",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1500)
                         },
                         new
                         {
                             Id = 5,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1502),
                             IsDeleted = false,
                             Name = "متوفى",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1502)
                         });
                 });
 
@@ -1805,9 +1252,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsCustomerComplaint")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -2016,8 +1460,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<string>("OperationUserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("PreviousReading")
-                        .HasColumnType("float");
+                    b.Property<string>("PreviousReading")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PreviousReadingIssueNumber")
                         .HasColumnType("nvarchar(max)");
@@ -2150,35 +1594,43 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasData(
                         new
                         {
-                            Id = 15,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = 12,
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1324),
                             IsDeleted = false,
                             Name = "متعذر",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1331)
                         },
                         new
                         {
-                            Id = 16,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = 13,
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1333),
                             IsDeleted = false,
-                            Name = "غير مقروء",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "معطل",
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1334)
                         },
                         new
                         {
-                            Id = 17,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = 14,
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1335),
                             IsDeleted = false,
-                            Name = "تقديرية",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "صالح",
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1335)
                         },
                         new
                         {
-                            Id = 18,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = 10040,
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1337),
                             IsDeleted = false,
-                            Name = "صحيحة",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Name = "مغشى",
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1337)
+                        },
+                        new
+                        {
+                            Id = 20131,
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1338),
+                            IsDeleted = false,
+                            Name = "انتظار",
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1339)
                         });
                 });
 
@@ -2231,10 +1683,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.Property<long>("Issue_Id")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("NationalId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("NumOfUnits")
                         .HasColumnType("int");
@@ -2292,9 +1740,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("ImageRequired")
-                        .HasColumnType("bit");
-
                     b.Property<string>("InsertBy")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -2329,52 +1774,38 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 1,
-                            ImageRequired = false,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1452),
                             IsDeleted = false,
                             Name = "الموقع",
                             SysName = "location",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1452)
                         },
                         new
                         {
                             Id = 2,
-                            ImageRequired = false,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1454),
                             IsDeleted = false,
                             Name = "النشاط",
                             SysName = "activity",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1455)
                         },
                         new
                         {
                             Id = 3,
-                            ImageRequired = false,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1456),
                             IsDeleted = false,
                             Name = "عدد الوحدات",
                             SysName = "unitsnumber",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1456)
                         },
                         new
                         {
                             Id = 4,
-                            ImageRequired = true,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            InsertDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1458),
                             IsDeleted = false,
                             Name = "صورة العميل",
                             SysName = "customerimage",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ImageRequired = true,
-                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsDeleted = false,
-                            Name = "الرقم القومى",
-                            SysName = "nationalid",
-                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            UpdateDate = new DateTime(2022, 12, 20, 10, 52, 44, 455, DateTimeKind.Local).AddTicks(1458)
                         });
                 });
 
@@ -3782,7 +3213,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .IsRequired();
 
                     b.HasOne("UtilitiesManagement.Domain.Models.Bill.BillIssue", "Issue")
-                        .WithMany("IssueDetails")
+                        .WithMany()
                         .HasForeignKey("Issue_Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -3794,11 +3225,6 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPayment", b =>
                 {
-                    b.HasOne("UtilitiesManagement.Domain.Models.Bill.BillPaymentSafe", "billPaymentSafe")
-                        .WithMany("BillPayments")
-                        .HasForeignKey("BillPaymentSafe_Id")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.HasOne("UtilitiesManagement.Domain.Models.Customer.CustCustomerData", "CustomerData")
                         .WithMany()
                         .HasForeignKey("CustomerData_Id")
@@ -3811,37 +3237,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("UtilitiesManagement.Domain.Models.Bill.BillPaymentType", "PaymentType")
-                        .WithMany()
-                        .HasForeignKey("PaymentType_Id")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.Navigation("CustomerData");
 
                     b.Navigation("Employee");
-
-                    b.Navigation("PaymentType");
-
-                    b.Navigation("billPaymentSafe");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentSafe", b =>
-                {
-                    b.HasOne("UtilitiesManagement.Domain.Models.Bill.BillSafe", "BillSafe")
-                        .WithMany()
-                        .HasForeignKey("BillSafe_Id")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("UtilitiesManagement.Domain.Models.HR.HrEmployee", "HrEmployee")
-                        .WithMany()
-                        .HasForeignKey("HrEmployee_Id")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("BillSafe");
-
-                    b.Navigation("HrEmployee");
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentTransaction", b =>
@@ -4083,7 +3481,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Operation.OprMeterReading", b =>
                 {
                     b.HasOne("UtilitiesManagement.Domain.Models.Customer.CustCustomerData", "CustomerData")
-                        .WithMany("OprMeterReading")
+                        .WithMany()
                         .HasForeignKey("Customer_Id")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -4383,29 +3781,14 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Navigation("Technician");
                 });
 
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillIssue", b =>
-                {
-                    b.Navigation("IssueDetails");
-                });
-
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPayment", b =>
                 {
                     b.Navigation("Transactions");
                 });
 
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentSafe", b =>
-                {
-                    b.Navigation("BillPayments");
-                });
-
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.PayDataLog", b =>
                 {
                     b.Navigation("PayDataLogDetails");
-                });
-
-            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Customer.CustCustomerData", b =>
-                {
-                    b.Navigation("OprMeterReading");
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.HR.HrEmployee", b =>
