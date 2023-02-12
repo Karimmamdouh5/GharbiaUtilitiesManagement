@@ -8,6 +8,7 @@
     public class GetCustomer
     {
         public long Id { get; set; }
+        public string InstId { get; set; }
         public string? SubscriptionStartDate { get; set; }
         public string Code { get; set; }
         public string? Name { get; set; }
@@ -29,7 +30,9 @@
         public bool IsDataComplete { get; set; }
         public long BlockId { get; set; }
         public long AreaId { get; set; }
+        public string AreaCode { get; set; }
         public string BlockName { get; set; }
+        public string BlockCode { get; set; }
         public string AreaName { get; set; }
         public int StatusId { get; set; }
         public string? PreviousReading { get; set; }

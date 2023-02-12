@@ -140,6 +140,8 @@ namespace UtilitiesManagement.Services.Services.Customer
             }
         }
 
+
+
         public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,long[] BlockIds)
         {
             try
@@ -156,8 +158,11 @@ namespace UtilitiesManagement.Services.Services.Customer
                     Id = x.Id,
                     X = x.X,
                     Y = x.Y,
+                    //TODO
+                    InstId="",
                     MeterChassisNum = x.MeterChassisNum!,
                     BlockName = x.Block.BlockName,
+                    BlockCode = x.Block.BlockCode,
                     ActivityId = x.CustomerActivity_Id,
                     ActivityName = x.CustomerActivity.Name,
                     Name = x.Name!,
@@ -169,6 +174,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                     BranchId = x.Block.Area.City.State.Branch_Id,
                     AreaId = x.Block.Area_Id,
                     AreaName = x.Block.Area.AreaName,
+                    AreaCode = x.Block.Area.AreaCode,
                     BlockId = x.Block_Id,
                     HasSewage = x.CustomerHasSewage,
                     ImagePath = x.ImagePath,
@@ -183,6 +189,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                     PreviousReading = x.PreviousReading,
                     PreviousReadingIssueNumber = x.PreviousReadingIssueNumber,
                     Address = x.Address,
+                    
                     //CountBill= GetRemoteTotalBillsForCustomers.Any(a=>a.CustomerID==1)? GetRemoteTotalBillsForCustomers.FirstOrDefault(a => a.CustomerID == 1)!.BillsCounts:0 ,
                    //TotalIndebtedness = GetRemoteTotalBillsForCustomers.Where(a => a.CustomerID == x.Id).Select(a => a.BillsTotalAmount).SingleOrDefault()
                 });
