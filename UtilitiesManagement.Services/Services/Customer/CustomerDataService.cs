@@ -142,7 +142,7 @@ namespace UtilitiesManagement.Services.Services.Customer
 
 
 
-        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,long[] BlockIds)
+        public async Task<Response<IEnumerable<GetCustomerDataForCollectorResponse>>> GetAllCustomerDataByCollectorAsync(long Collector_Id,int IssueDetailsId, long[] BlockIds)
         {
             try
             {
@@ -159,7 +159,7 @@ namespace UtilitiesManagement.Services.Services.Customer
                     X = x.X,
                     Y = x.Y,
                     //TODO
-                    InstId="",
+                    InstKey=x.InstKey,
                     MeterChassisNum = x.MeterChassisNum!,
                     BlockName = x.Block.BlockName,
                     BlockCode = x.Block.BlockCode,

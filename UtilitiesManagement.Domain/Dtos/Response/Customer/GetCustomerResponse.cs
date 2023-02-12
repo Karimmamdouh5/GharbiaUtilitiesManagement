@@ -8,7 +8,7 @@
     public class GetCustomer
     {
         public long Id { get; set; }
-        public string InstId { get; set; }
+        public string InstKey { get; set; }
         public string? SubscriptionStartDate { get; set; }
         public string Code { get; set; }
         public string? Name { get; set; }
