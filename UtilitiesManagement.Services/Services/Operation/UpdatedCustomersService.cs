@@ -64,7 +64,7 @@
                 (searchParametersRequest.CustomerId == x.CustomerData_Id || searchParametersRequest.CustomerId == null)
                 &&
                 (searchParametersRequest.CustomerCode == x.CustomerData.Code || searchParametersRequest.CustomerCode == null)
-               
+
                 &&
                 (searchParametersRequest.BranchId == x.Employee.Branch_Id || searchParametersRequest.BranchId == null)
                 &&
@@ -75,7 +75,7 @@
                 (searchParametersRequest.CityId == x.CustomerData.Block.Area.City_Id || searchParametersRequest.CityId == null)
                 &&
                 (searchParametersRequest.StateId == x.CustomerData.Block.Area.City.State_Id || searchParametersRequest.StateId == null)
-                &&      
+                &&
                 (searchParametersRequest.UpdatingTypeId == x.UpdatedCustomerType_Id || searchParametersRequest.UpdatingTypeId == null)
                 &&
                 (searchParametersRequest.IsRevised == x.IsRevised || searchParametersRequest.IsRevised == null)
@@ -96,7 +96,14 @@
                     CustomerCode = x.CustomerData.Code,
                     CustomerName = x.CustomerData.Name!,
                     CustomerActivity = x.CustomerActivity.Name,
-                    NumOfUnits = x.NumOfUnits??0,
+                    Cust_X=x.CustomerData.X,
+                    Cust_Y=x.CustomerData.Y ,
+                    Cust_NationalId = x.CustomerData.NationalId,
+                    Cust_NumOfUnits=x.CustomerData.NumOfUnits,
+                    Cust_ImagePath = x.CustomerData.ImagePath,
+                    Cust_Activity = x.CustomerData.CustomerActivity.Name,
+                    NationalId = x.NationalId,
+                    NumOfUnits = x.NumOfUnits ?? 0,
                     RequestDate = x.RequestDate,
                     SysName = x.UpdatedCustomerType.SysName,
                     UpdatedTypeName = x.UpdatedCustomerType.Name,
@@ -117,7 +124,7 @@
 
                     IssueId = x.Issue_Id,
                     IssueName = x.Issue.IssueName
-                },orderBy: x =>
+                }, orderBy: x =>
                   x.OrderByDescending(x => x.Id))
                 };
 
@@ -157,12 +164,12 @@
                 bool result = await _unitOfWork.CompleteAsync() > 0;
 
                 var data = _mapper.Map<IEnumerable<AddUpdatedCustomerResponse>>(mappedUpdatedCustomer);
-                var UpdatedCustomerTypes =await _unitOfWork.UpdatedCustomerTypes.GetAllAsync(); 
+                var UpdatedCustomerTypes = await _unitOfWork.UpdatedCustomerTypes.GetAllAsync();
                 data.ToList().ForEach(x => x.SysName = UpdatedCustomerTypes.FirstOrDefault(a => a.Id == x.UpdatedCustomerType_Id)?.SysName);
                 return new Response<IEnumerable<AddUpdatedCustomerResponse>>()
                 {
-                    
-                    
+
+
                     IsSuccess = result,
                     Data = data,
                     Errors = new string[] { },
@@ -243,12 +250,12 @@
             }
             catch (Exception ex)
             {
-                await _customLog.LogExceptionInDb(ex,"");
+                await _customLog.LogExceptionInDb(ex, "");
                 return new Response<IEnumerable<string>>()
                 {
-                   
-                    Errors = new string[] {ex.Message },
-                    Message =_sharLocalizer[SDLocalization.Error]
+
+                    Errors = new string[] { ex.Message },
+                    Message = _sharLocalizer[SDLocalization.Error]
                 };
             }
         }
@@ -281,7 +288,7 @@
             }
             catch (Exception ex)
             {
-                await _customLog.LogExceptionInDb(ex,"");
+                await _customLog.LogExceptionInDb(ex, "");
                 return new Response<IEnumerable<SelectListSysNameResponse>>()
                 {
                     Errors = new[] { ex.Message },

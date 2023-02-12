@@ -5,6 +5,7 @@
         public long? BranchId { get; set; }
         public int? UpdatingTypeId { get; set; }
         public bool? IsPublic { get; set; }
+        public bool? IsCustomerComplaint { get; set; }
 
     }
 }

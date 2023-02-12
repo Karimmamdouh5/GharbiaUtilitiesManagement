@@ -67,6 +67,10 @@ namespace UtilitiesManagement.Services.Services.Operation
                  &&
                  (x.IsPublic == searchParametersRequest.IsPublic || searchParametersRequest.IsPublic == null)
                  &&
+                 (x.IsPublic == searchParametersRequest.IsPublic || searchParametersRequest.IsPublic == null)
+                 &&
+                 (x.IsCustomerComplaint == searchParametersRequest.IsCustomerComplaint || searchParametersRequest.IsCustomerComplaint == null)
+                 &&
                  (x.ComplaintDate >= searchParametersRequest.StartDate || searchParametersRequest.StartDate == null)
                  &&
                  (x.ComplaintDate <= searchParametersRequest.EndDate || searchParametersRequest.EndDate == null)
@@ -84,24 +88,23 @@ namespace UtilitiesManagement.Services.Services.Operation
                  (searchParametersRequest.BlockId == x.CustomerData!.Block_Id || searchParametersRequest.BlockId == null)
                  &&
                  (searchParametersRequest.IsRevised == x.IsRevised || searchParametersRequest.IsRevised == null)
-                 && 
+                 &&
                  (searchParametersRequest.StateId == x.CustomerData.Block.Area.City.State_Id || searchParametersRequest.StateId == null)
-                 && 
-                 (searchParametersRequest.CityId == x.CustomerData.Block.Area.City_Id || searchParametersRequest.CityId == null)
-                 ;
+                 &&
+                 (searchParametersRequest.CityId == x.CustomerData.Block.Area.City_Id || searchParametersRequest.CityId == null);
 
                 var result = new GetComplaintResponse
                 {
                     TotalRecords = await _unitOfWork.Complaints.Count(filter: filter),
 
-                    Data = await _unitOfWork.Complaints.GetSpecificSelectAsync(filter,ignoreQueryFilters:true,
+                    Data = await _unitOfWork.Complaints.GetSpecificSelectAsync(filter, ignoreQueryFilters: true,
                      take: searchParametersRequest.PageSize,
                      skip: (searchParametersRequest.PageNumber - 1) * searchParametersRequest.PageSize,
                 select: x => new GetComplaint
                 {
                     Id = x.Id,
                     CollectorName = x.Employee.Name,
-                    CustomerName = x.CustomerData==null?"": x.CustomerData!.Name,
+                    CustomerName = x.CustomerData == null ? "" : x.CustomerData!.Name,
                     CustomerCode = x.CustomerData == null ? "" : x.CustomerData!.Code,
                     IsRevised = x.IsRevised,
                     X = x.X,
@@ -114,12 +117,14 @@ namespace UtilitiesManagement.Services.Services.Operation
                     AreaName = x.CustomerData == null ? x!.Block!.Area.AreaName : x.CustomerData!.Block!.Area.AreaName,
                     BlockId = x.CustomerData == null ? (long)x!.BlockId : x.CustomerData!.Block_Id,
                     BlockName = x.CustomerData == null ? x!.Block!.BlockName : x.CustomerData!.Block!.BlockName,
-                    BranchId = x.CustomerData==null ? x!.Block!.Area!.City.State.Branch_Id: x.CustomerData!.Block!.Area!.City.State.Branch_Id,
+                    BranchId = x.CustomerData == null ? x!.Block!.Area!.City.State.Branch_Id : x.CustomerData!.Block!.Area!.City.State.Branch_Id,
                     BranchName = x.CustomerData == null ? x!.Block.Area!.City.State.Branch.BranchName : x.CustomerData!.Block!.Area.City.State.Branch.BranchName,
                     IssueId = x.Issue_Id,
                     IssueName = x.Issue.IssueName,
                     IsPublic = x.IsPublic,
-                    PublicAddress = x.PublicAddress
+                    PublicAddress = x.PublicAddress,
+                    IsCustomerComplaint = x.IsCustomerComplaint
+
 
                     //Id = x.Id,
                     //CollectorName = x.Employee.Name,
@@ -144,7 +149,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                     //PublicAddress = x.PublicAddress
                 }, orderBy: x =>
                   x.OrderByDescending(x => x.Id))
-          
+
                 };
 
                 if (result == null || result.Data.ToList().Count == 0)
@@ -172,7 +177,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                 return new Response<GetComplaintResponse>()
                 {
                     Errors = new string[] { _sharLocalizer[SDLocalization.Error] },
-                    Message = ex.Message+(ex.InnerException==null?"" : ex.InnerException.Message)
+                    Message = ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message)
                 };
             }
         }
@@ -180,16 +185,16 @@ namespace UtilitiesManagement.Services.Services.Operation
         public async Task<Response<IEnumerable<AddComplaintRequest>>> AddComplaintAsync(IEnumerable<AddComplaintRequest> addComplaintRequests)
         {
             string err = _sharLocalizer[SDLocalization.Error];
-            
+
             addComplaintRequests = addComplaintRequests.Where(a => a.CustomerId != null || a.BlockId != null);
-            if (addComplaintRequests.Count() ==0)
+            if (addComplaintRequests.Count() == 0)
             {
                 return new Response<IEnumerable<AddComplaintRequest>>()
                 {
                     IsSuccess = false,
                     Data = new List<AddComplaintRequest>(),
                     Errors = new string[] { },
-                    Message =  _sharLocalizer[SDLocalization.ReviewRequest]
+                    Message = _sharLocalizer[SDLocalization.ReviewRequest]
                 };
             }
             try
@@ -213,7 +218,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                 return new Response<IEnumerable<AddComplaintRequest>>()
                 {
                     Errors = new string[] { err },
-                    Message = ex.Message+(ex.InnerException==null?"" : ex.InnerException.Message)
+                    Message = ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message)
                 };
             }
         }
@@ -247,7 +252,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                 return new Response<IEnumerable<UpdateComplaintRequest>>()
                 {
                     Errors = new string[] { err },
-                    Message = ex.Message+(ex.InnerException==null?"" : ex.InnerException.Message)
+                    Message = ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message)
                 };
             }
         }
@@ -256,7 +261,7 @@ namespace UtilitiesManagement.Services.Services.Operation
         {
             try
             {
-                if (photos.Count()==0 || photos ==null)
+                if (photos.Count() == 0 || photos == null)
                 {
                     string resultMsg = _sharLocalizer[SDLocalization.NotFoundPhotos];
 
@@ -267,7 +272,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                         Message = resultMsg
                     };
                 }
-               
+
 
                 var path = GetImagePath(imagePath);
                 var paths = new List<string>();
@@ -311,7 +316,7 @@ namespace UtilitiesManagement.Services.Services.Operation
                     IsSuccess = false
                 };
             }
-          
+
         }
 
         private static string GetImagePath(ImagePathRequest imagePath)

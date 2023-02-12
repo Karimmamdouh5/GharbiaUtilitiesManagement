@@ -21,5 +21,16 @@
         public double? X { get; set; }
         public double? Y { get; set; }
         public string SysName { get; set; }
+        public string? NationalId { get; set; }
+
+
+        public string? Cust_NationalId { get; set; }
+        public int Cust_NumOfUnits { get; set; }
+        public string? Cust_ImagePath { get; set; }
+        public double? Cust_X { get; set; }
+        public double? Cust_Y { get; set; }
+        public string Cust_Activity { get; set; }
+
+
     }
 }

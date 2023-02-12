@@ -20,6 +20,6 @@
         public List<string> ComplaintImagesPath { get; set; }
         public bool? IsPublic { get; set; }
         public string? PublicAddress { get; set; }
-
+        public bool? IsCustomerComplaint { get; set; }
     }
 }
