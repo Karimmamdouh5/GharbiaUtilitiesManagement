@@ -61,7 +61,7 @@
 
         [MaxLength(50)]
         public string InstKey { get; set; } = "0";
-        public bool IsPosted { get; set; }
+      
         [MaxLength(50)]
         public string? NationalId { get; set; }
     }

@@ -35,7 +35,7 @@
         public int? CustomerActivity_Id { get; set; }
         [ForeignKey(nameof(CustomerActivity_Id))]
         public CustCustomerActivity CustomerActivity { get; set; }
-
+        public bool IsPosted { get; set; }
         public string? InternetSpeed { get; set; }
     }
 }
