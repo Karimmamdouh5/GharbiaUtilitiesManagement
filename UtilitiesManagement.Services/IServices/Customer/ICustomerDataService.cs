@@ -12,6 +12,7 @@ namespace  UtilitiesManagement.Services.IServices.Customer
         Task<Response<GetCustomerDataResponse>> ActiveOrDeActiveForCompletedDataAsync(int customerDataId);
         Task<Response<IEnumerable<SelectListResponseIdInt>>> ListOfCustomerActivitesAsync();
         Task<Response<String>> ManageRemoteCustomersAsync();
+        Task<Response<GetMeterReadingForAllCustomersResponse>> GetAllMeterReadingsAsync(SearchParametersForMeterReadingsRequest searchParametersRequest);
 
         #endregion
     }
