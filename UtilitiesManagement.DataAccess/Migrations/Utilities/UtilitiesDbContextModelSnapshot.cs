@@ -8,7 +8,7 @@ using UtilitiesManagement.DataAccess.DataContext;
 
 #nullable disable
 
-namespace UtilitiesManagement.DataAccess.Migrations.Utilities
+namespace GharbiaUtilitiesManagement.DataAccess.Migrations.Utilities
 {
     [DbContext(typeof(UtilitiesDbContext))]
     partial class UtilitiesDbContextModelSnapshot : ModelSnapshot
@@ -380,13 +380,33 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<DateTime?>("CollectionDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("CompanyTenantId")
+                        .HasColumnType("int");
+
                     b.Property<long>("CustomerData_Id")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("DeleteBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<long>("Employee_Id")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("InsertBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool?>("IsCollected")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsRePrint")
@@ -398,6 +418,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("PayDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PaymentType_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
 
                     b.Property<double>("X")
@@ -414,6 +444,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.HasIndex("Employee_Id");
 
+                    b.HasIndex("PaymentType_Id");
+
                     b.ToTable("Bill_Payment");
                 });
 
@@ -429,17 +461,44 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<int>("BillSafe_Id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CompanyTenantId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeleteBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("HrEmployee_Id")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("InsertBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsPosted")
                         .HasColumnType("bit");
 
                     b.Property<double>("TotalAmount")
                         .HasColumnType("float");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -468,6 +527,33 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<long>("Bill_Id")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("CompanyTenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DeleteBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BillPayment_Id");
@@ -475,6 +561,85 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.HasIndex("Bill_Id");
 
                     b.ToTable("Bill_PaymentTransactions");
+                });
+
+            modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPaymentType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CompanyTenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DeleteBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("SysName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bill_PaymentType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "كاش",
+                            SysName = "cash",
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "شيك",
+                            SysName = "cheque",
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "فيزا",
+                            SysName = "visa",
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("UtilitiesManagement.Domain.Models.Bill.BillPrintLog", b =>
@@ -651,8 +816,35 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     b.Property<long>("Bill_Id")
                         .HasColumnType("bigint");
 
+                    b.Property<int?>("CompanyTenantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DeleteBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsertBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("InsertDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("PayDataLogId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UpdateBy")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -693,6 +885,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<double>("ReadingAvg")
+                        .HasColumnType("float");
 
                     b.Property<string>("UpdateBy")
                         .HasMaxLength(100)
@@ -777,6 +972,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsPosted")
                         .HasColumnType("bit");
 
                     b.Property<string>("MeterChassisNum")
@@ -1014,10 +1212,10 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9745),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "سارى",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9746)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1236,42 +1434,42 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9790),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "يعمل",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9790)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9792),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "تمت اقالتة",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9792)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9793),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "أجازة",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9794)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9796),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "معاش",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9796)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 5,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9797),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "متوفى",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9798)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -1605,6 +1803,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
                     b.Property<DateTime>("InsertDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsCustomerComplaint")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -1949,34 +2150,34 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 15,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9614),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "متعذر",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9624)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 16,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9626),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "غير مقروء",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9626)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 17,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9628),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "تقديرية",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9628)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 18,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9629),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "صحيحة",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9630)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -2120,38 +2321,38 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         new
                         {
                             Id = 1,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9762),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "الموقع",
                             SysName = "location",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9762)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9764),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "النشاط",
                             SysName = "activity",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9764)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9770),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "عدد الوحدات",
                             SysName = "unitsnumber",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9771)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
-                            InsertDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9772),
+                            InsertDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "صورة العميل",
                             SysName = "customerimage",
-                            UpdateDate = new DateTime(2023, 2, 12, 12, 8, 1, 970, DateTimeKind.Local).AddTicks(9773)
+                            UpdateDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -3588,9 +3789,17 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
+                    b.HasOne("UtilitiesManagement.Domain.Models.Bill.BillPaymentType", "PaymentType")
+                        .WithMany()
+                        .HasForeignKey("PaymentType_Id")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("CustomerData");
 
                     b.Navigation("Employee");
+
+                    b.Navigation("PaymentType");
 
                     b.Navigation("billPaymentSafe");
                 });

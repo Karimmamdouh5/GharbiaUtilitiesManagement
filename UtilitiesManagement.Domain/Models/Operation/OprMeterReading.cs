@@ -39,5 +39,6 @@
         public DateTime? MeterReadingDate { get; set; }
         public string? PreviousReading{ get; set; }
         public string? PreviousReadingIssueNumber{ get; set; }
+        
     }
 }

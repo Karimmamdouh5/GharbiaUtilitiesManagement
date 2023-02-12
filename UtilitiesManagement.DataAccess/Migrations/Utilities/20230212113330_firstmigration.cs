@@ -3,20 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace UtilitiesManagement.DataAccess.Migrations.Utilities
+namespace GharbiaUtilitiesManagement.DataAccess.Migrations.Utilities
 {
     public partial class firstmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Bill_Issues",
+                name: "Bill_PaymentType",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
-                    IssueName = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: false),
-                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SysName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -28,7 +28,28 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bill_Issues", x => x.ID);
+                    table.PrimaryKey("PK_Bill_PaymentType", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_Safes",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_Safes", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,6 +58,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ReadingAvg = table.Column<double>(type: "float", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -49,6 +71,49 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cust_CustomerActivities", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cust_CustomerDataTemp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    SubscriptionStartDate = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: true),
+                    Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    ActualName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ActualActivity = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    CustomerStartIssue = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    NumOfUnits = table.Column<int>(type: "int", nullable: false),
+                    ActivityStarIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    CustomerHasSewage = table.Column<bool>(type: "bit", nullable: false),
+                    MeterChassisNum = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MeterDiameter = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    MeterStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MeterStartReading = table.Column<int>(type: "int", nullable: false),
+                    MeterStartIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    X = table.Column<double>(type: "float", nullable: true),
+                    Y = table.Column<double>(type: "float", nullable: true),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDataComplete = table.Column<bool>(type: "bit", nullable: false),
+                    Block_Id = table.Column<long>(type: "bigint", nullable: false),
+                    CustomerStatus_Id = table.Column<int>(type: "int", nullable: false),
+                    CustomerActivity_Id = table.Column<int>(type: "int", nullable: false),
+                    PreviousReading = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PreviousReadingIssueNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cust_CustomerDataTemp", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,21 +137,26 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
-                name: "Hr_EmployeeBlocks",
+                name: "Hr_Employees_Temp",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
-                    CollectorID = table.Column<long>(type: "bigint", nullable: false),
-                    CollectorName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    BlockID = table.Column<long>(type: "bigint", nullable: false),
-                    BlockCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    BlockName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    EmployeeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BranchID = table.Column<long>(type: "bigint", nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Hr_EmployeeBlocks", x => x.ID);
+                    table.PrimaryKey("PK_Hr_Employees_Temp", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -108,6 +178,58 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hr_Status", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Noti_FcmConfig",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsAndroid = table.Column<bool>(type: "bit", nullable: false),
+                    apiKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    authDomain = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    projectId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    storageBucket = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    messagingSenderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    appId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    measurementId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ServerKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SenderId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PublicKey = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Noti_FcmConfig", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Noti_FcmModules",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Noti_FcmModules", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,6 +297,154 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
+                name: "Perm_Menu",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParentId = table.Column<long>(type: "bigint", nullable: true),
+                    IsLast = table.Column<bool>(type: "bit", nullable: true),
+                    Route = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Permission = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Icon = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderBy = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Perm_Menu", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Areas_Temp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    AreaCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AreaName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    City_Id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Areas_Temp", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Bills_Temp",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BRANCH_NAME = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    BRANCH_Id = table.Column<long>(type: "bigint", nullable: true),
+                    Block_Id = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ADDRESS = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ACTIVITY_TYPE = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ACTIVITY_TYPE_Id = table.Column<long>(type: "bigint", nullable: true),
+                    CUSTOMER_NAME = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    BILL_KEY = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    BILL_PRINTED_DATE = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    LAST_READING = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CURRENT_READING = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ASSIGNED_TO = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    NUMBER_OF_UNITS = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    BILL_AMOUNT = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CUST_KEY = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CUST_ID = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Bill_ID = table.Column<long>(type: "bigint", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Bills_Temp", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Blocks_Temp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    BlockCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BlockName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    Area_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Blocks_Temp", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Branches_Temp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    BranchCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BranchName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    Company_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Branches_Temp", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Cities_Temp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    CityCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    State_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Cities_Temp", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Shar_Company",
                 columns: table => new
                 {
@@ -184,10 +454,12 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     CompanyName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Activity = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
                     LogoPrint = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LogoWeb = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", maxLength: 50, nullable: false),
+                    MobileUsersCount = table.Column<int>(type: "int", nullable: false),
+                    CompanyServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -200,6 +472,51 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shar_Company", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_States_Temp",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    StateCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StateName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    Branch_Id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_States_Temp", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_Issues",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Company_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IssueName = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    IssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_Issues", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_Issues_Shar_Company_Company_Id",
+                        column: x => x.Company_Id,
+                        principalTable: "Shar_Company",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -258,7 +575,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
-                    BranchCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    BranchCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BranchName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     IsUpdated = table.Column<bool>(type: "bit", nullable: false),
                     Company_Id = table.Column<long>(type: "bigint", nullable: false),
@@ -314,13 +631,15 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "Bill_IssueDetail",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BillStartNum = table.Column<int>(type: "int", nullable: false),
                     BillEndNum = table.Column<int>(type: "int", nullable: false),
                     BranchIssueStatus = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CanPostReading = table.Column<bool>(type: "bit", nullable: false),
                     Issue_Id = table.Column<long>(type: "bigint", nullable: false),
                     Branch_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -349,7 +668,8 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "Hr_Employees",
                 columns: table => new
                 {
-                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
                     Name = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
@@ -358,6 +678,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     Job = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status_Id = table.Column<int>(type: "int", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    IsReader = table.Column<bool>(type: "bit", nullable: true),
                     Branch_Id = table.Column<long>(type: "bigint", nullable: false),
                     IsTechnician = table.Column<bool>(type: "bit", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -385,12 +706,12 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shar_Areas",
+                name: "Shar_States",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
-                    AreaCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    AreaName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    StateCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StateName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     IsUpdated = table.Column<bool>(type: "bit", nullable: false),
                     Branch_Id = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -404,11 +725,46 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shar_Areas", x => x.ID);
+                    table.PrimaryKey("PK_Shar_States", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Shar_Areas_Shar_Branches_Branch_Id",
+                        name: "FK_Shar_States_Shar_Branches_Branch_Id",
                         column: x => x.Branch_Id,
                         principalTable: "Shar_Branches",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_PaymentSafes",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BillSafe_Id = table.Column<int>(type: "int", nullable: false),
+                    HrEmployee_Id = table.Column<long>(type: "bigint", nullable: false),
+                    TotalAmount = table.Column<double>(type: "float", nullable: false),
+                    IsPosted = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_PaymentSafes", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_PaymentSafes_Bill_Safes_BillSafe_Id",
+                        column: x => x.BillSafe_Id,
+                        principalTable: "Bill_Safes",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_PaymentSafes_Hr_Employees_HrEmployee_Id",
+                        column: x => x.HrEmployee_Id,
+                        principalTable: "Hr_Employees",
                         principalColumn: "ID");
                 });
 
@@ -428,6 +784,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     UpdateBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DeleteBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CompanyTenantId = table.Column<int>(type: "int", nullable: true),
+                    IsAndroid = table.Column<bool>(type: "bit", nullable: false),
                     UserType_Id = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -495,14 +852,14 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
-                name: "Shar_Blocks",
+                name: "Shar_Cities",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
-                    BlockCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
-                    BlockName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CityCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     IsUpdated = table.Column<bool>(type: "bit", nullable: false),
-                    Area_Id = table.Column<long>(type: "bigint", nullable: false),
+                    State_Id = table.Column<long>(type: "bigint", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -514,12 +871,73 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Shar_Blocks", x => x.ID);
+                    table.PrimaryKey("PK_Shar_Cities", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Shar_Blocks_Shar_Areas_Area_Id",
-                        column: x => x.Area_Id,
-                        principalTable: "Shar_Areas",
+                        name: "FK_Shar_Cities_Shar_States_State_Id",
+                        column: x => x.State_Id,
+                        principalTable: "Shar_States",
                         principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Noti_Message",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserSender_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ReadOnly = table.Column<bool>(type: "bit", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Noti_Message", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Noti_Message_Perm_Users_UserSender_Id",
+                        column: x => x.UserSender_Id,
+                        principalTable: "Perm_Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Noti_UserModule",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Module_Id = table.Column<int>(type: "int", nullable: true),
+                    User_Id = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Noti_UserModule", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Noti_UserModule_Noti_FcmModules_Module_Id",
+                        column: x => x.Module_Id,
+                        principalTable: "Noti_FcmModules",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Noti_UserModule_Perm_Users_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "Perm_Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -550,6 +968,38 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         column: x => x.UserId,
                         principalTable: "Perm_Users",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Perm_UserBranches",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Branch_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Perm_UserBranches", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Perm_UserBranches_Perm_Users_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "Perm_Users",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Perm_UserBranches_Shar_Branches_Branch_Id",
+                        column: x => x.Branch_Id,
+                        principalTable: "Shar_Branches",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -726,31 +1176,132 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
+                name: "Shar_Areas",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    AreaCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AreaName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    City_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Areas", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Shar_Areas_Shar_Cities_City_Id",
+                        column: x => x.City_Id,
+                        principalTable: "Shar_Cities",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Noti_MessageUser",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    User_Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Message_Id = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Noti_MessageUser", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Noti_MessageUser_Noti_Message_Message_Id",
+                        column: x => x.Message_Id,
+                        principalTable: "Noti_Message",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Noti_MessageUser_Perm_Users_User_Id",
+                        column: x => x.User_Id,
+                        principalTable: "Perm_Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shar_Blocks",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false),
+                    BlockCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BlockName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    IsUpdated = table.Column<bool>(type: "bit", nullable: false),
+                    Area_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shar_Blocks", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Shar_Blocks_Shar_Areas_Area_Id",
+                        column: x => x.Area_Id,
+                        principalTable: "Shar_Areas",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Cust_CustomerData",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
                     SubscriptionStartDate = table.Column<string>(type: "nvarchar(6)", maxLength: 6, nullable: true),
-                    Code = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    ActualName = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    ActualActivity = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    StartIssueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
+                    ActualName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    ActualActivity = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    CustomerStartIssue = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     NumOfUnits = table.Column<int>(type: "int", nullable: false),
-                    ActivityStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ActivityStarIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     CustomerHasSewage = table.Column<bool>(type: "bit", nullable: false),
-                    MeterChassisNum = table.Column<int>(type: "int", nullable: false),
-                    MeterDiameter = table.Column<int>(type: "int", nullable: false),
+                    MeterChassisNum = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    MeterDiameter = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     MeterStartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MeterStartReading = table.Column<int>(type: "int", nullable: false),
-                    MeterStartIssue = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    MeterStartIssue = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     X = table.Column<double>(type: "float", nullable: true),
                     Y = table.Column<double>(type: "float", nullable: true),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDataComplete = table.Column<bool>(type: "bit", nullable: false),
                     Block_Id = table.Column<long>(type: "bigint", nullable: false),
                     CustomerStatus_Id = table.Column<int>(type: "int", nullable: false),
-                    CustomerActivity_Id = table.Column<int>(type: "int", nullable: false)
+                    CustomerActivity_Id = table.Column<int>(type: "int", nullable: false),
+                    PreviousReading = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    PreviousReadingIssueNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstKey = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    IsPosted = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -773,11 +1324,38 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bill_BillPayment",
+                name: "Hr_EmployeeBlocks",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Collector_Id = table.Column<long>(type: "bigint", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Block_Id = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Hr_EmployeeBlocks", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Hr_EmployeeBlocks_Hr_Employees_Collector_Id",
+                        column: x => x.Collector_Id,
+                        principalTable: "Hr_Employees",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Hr_EmployeeBlocks_Shar_Blocks_Block_Id",
+                        column: x => x.Block_Id,
+                        principalTable: "Shar_Blocks",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_BillData",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false),
-                    Cutomer_Id = table.Column<long>(type: "bigint", nullable: false),
+                    BillIssue_Id = table.Column<long>(type: "bigint", nullable: true),
+                    Customer_Id = table.Column<long>(type: "bigint", nullable: false),
                     BillNum = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PayDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     BillValue = table.Column<double>(type: "float", nullable: false),
@@ -790,15 +1368,63 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     WaterInstallment = table.Column<double>(type: "float", nullable: false),
                     WastWaterInstallment = table.Column<double>(type: "float", nullable: false),
                     Tax14Percent = table.Column<double>(type: "float", nullable: false),
-                    CustomerPayingDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    CustomerPayingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PrevReading = table.Column<double>(type: "float", nullable: false),
+                    CurrentReading = table.Column<double>(type: "float", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bill_BillPayment", x => x.ID);
+                    table.PrimaryKey("PK_Bill_BillData", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Bill_BillPayment_Cust_CustomerData_Cutomer_Id",
-                        column: x => x.Cutomer_Id,
+                        name: "FK_Bill_BillData_Bill_Issues_BillIssue_Id",
+                        column: x => x.BillIssue_Id,
+                        principalTable: "Bill_Issues",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_BillData_Cust_CustomerData_Customer_Id",
+                        column: x => x.Customer_Id,
                         principalTable: "Cust_CustomerData",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_PayDataLog",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Customer_Id = table.Column<long>(type: "bigint", nullable: false),
+                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Employee_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_PayDataLog", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_PayDataLog_Cust_CustomerData_Customer_Id",
+                        column: x => x.Customer_Id,
+                        principalTable: "Cust_CustomerData",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_PayDataLog_Hr_Employees_Employee_Id",
+                        column: x => x.Employee_Id,
+                        principalTable: "Hr_Employees",
                         principalColumn: "ID");
                 });
 
@@ -810,12 +1436,37 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerData_Id = table.Column<long>(type: "bigint", nullable: false),
                     Employee_Id = table.Column<long>(type: "bigint", nullable: false),
+                    BillPaymentSafe_Id = table.Column<long>(type: "bigint", nullable: true),
+                    PaymentType_Id = table.Column<int>(type: "int", nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PayDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    X = table.Column<double>(type: "float", nullable: false),
+                    Y = table.Column<double>(type: "float", nullable: false),
+                    IsCollected = table.Column<bool>(type: "bit", nullable: true),
+                    CollectionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsRePrint = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bill_Payment", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_Payment_Bill_PaymentSafes_BillPaymentSafe_Id",
+                        column: x => x.BillPaymentSafe_Id,
+                        principalTable: "Bill_PaymentSafes",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_Payment_Bill_PaymentType_PaymentType_Id",
+                        column: x => x.PaymentType_Id,
+                        principalTable: "Bill_PaymentType",
+                        principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Bill_Payment_Cust_CustomerData_CustomerData_Id",
                         column: x => x.CustomerData_Id,
@@ -840,9 +1491,13 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IsRevised = table.Column<bool>(type: "bit", nullable: false),
                     Employee_Id = table.Column<long>(type: "bigint", nullable: false),
-                    Customer_Id = table.Column<long>(type: "bigint", nullable: false),
+                    Customer_Id = table.Column<long>(type: "bigint", nullable: true),
                     Issue_Id = table.Column<long>(type: "bigint", nullable: false),
                     ComplaintType_Id = table.Column<int>(type: "int", nullable: false),
+                    IsPublic = table.Column<bool>(type: "bit", nullable: false),
+                    IsCustomerComplaint = table.Column<bool>(type: "bit", nullable: false),
+                    PublicAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BlockId = table.Column<long>(type: "bigint", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -875,6 +1530,11 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         column: x => x.ComplaintType_Id,
                         principalTable: "Opr_ComplaintTypes",
                         principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Opr_Complaints_Shar_Blocks_BlockId",
+                        column: x => x.BlockId,
+                        principalTable: "Shar_Blocks",
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -887,13 +1547,18 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     X = table.Column<double>(type: "float", nullable: false),
                     Y = table.Column<double>(type: "float", nullable: false),
                     IsRevised = table.Column<bool>(type: "bit", nullable: false),
-                    IsPotsed = table.Column<bool>(type: "bit", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OperationUserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsPosted = table.Column<bool>(type: "bit", nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReadingImagePath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OperationUserId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MeterStatus_Id = table.Column<int>(type: "int", nullable: false),
                     Employee_Id = table.Column<long>(type: "bigint", nullable: false),
                     Customer_Id = table.Column<long>(type: "bigint", nullable: false),
-                    Issue_Id = table.Column<long>(type: "bigint", nullable: false),
+                    Issue_Details_Id = table.Column<long>(type: "bigint", nullable: false),
+                    InternetSpeed = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MeterReadingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PreviousReading = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PreviousReadingIssueNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -907,9 +1572,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 {
                     table.PrimaryKey("PK_Opr_MeterReadings", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Opr_MeterReadings_Bill_Issues_Issue_Id",
-                        column: x => x.Issue_Id,
-                        principalTable: "Bill_Issues",
+                        name: "FK_Opr_MeterReadings_Bill_IssueDetail_Issue_Details_Id",
+                        column: x => x.Issue_Details_Id,
+                        principalTable: "Bill_IssueDetail",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Opr_MeterReadings_Cust_CustomerData_Customer_Id",
@@ -929,7 +1594,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 });
 
             migrationBuilder.CreateTable(
-                name: "Opr_UpdetedCustomers",
+                name: "Opr_UpdatedCustomers",
                 columns: table => new
                 {
                     ID = table.Column<long>(type: "bigint", nullable: false)
@@ -943,7 +1608,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                     UpdatedCustomerType_Id = table.Column<int>(type: "int", nullable: false),
                     CustomerData_Id = table.Column<long>(type: "bigint", nullable: false),
                     Employee_Id = table.Column<long>(type: "bigint", nullable: false),
+                    Issue_Id = table.Column<long>(type: "bigint", nullable: false),
                     CustomerActivity_Id = table.Column<int>(type: "int", nullable: true),
+                    InternetSpeed = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -955,26 +1622,64 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Opr_UpdetedCustomers", x => x.ID);
+                    table.PrimaryKey("PK_Opr_UpdatedCustomers", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Opr_UpdetedCustomers_Cust_CustomerActivities_CustomerActivity_Id",
+                        name: "FK_Opr_UpdatedCustomers_Bill_Issues_Issue_Id",
+                        column: x => x.Issue_Id,
+                        principalTable: "Bill_Issues",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Opr_UpdatedCustomers_Cust_CustomerActivities_CustomerActivity_Id",
                         column: x => x.CustomerActivity_Id,
                         principalTable: "Cust_CustomerActivities",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Opr_UpdetedCustomers_Cust_CustomerData_CustomerData_Id",
+                        name: "FK_Opr_UpdatedCustomers_Cust_CustomerData_CustomerData_Id",
                         column: x => x.CustomerData_Id,
                         principalTable: "Cust_CustomerData",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Opr_UpdetedCustomers_Hr_Employees_Employee_Id",
+                        name: "FK_Opr_UpdatedCustomers_Hr_Employees_Employee_Id",
                         column: x => x.Employee_Id,
                         principalTable: "Hr_Employees",
                         principalColumn: "ID");
                     table.ForeignKey(
-                        name: "FK_Opr_UpdetedCustomers_Opr_UpdatedCustomerTypes_UpdatedCustomerType_Id",
+                        name: "FK_Opr_UpdatedCustomers_Opr_UpdatedCustomerTypes_UpdatedCustomerType_Id",
                         column: x => x.UpdatedCustomerType_Id,
                         principalTable: "Opr_UpdatedCustomerTypes",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_PayDataLogDetails",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Bill_Id = table.Column<long>(type: "bigint", nullable: false),
+                    Amount = table.Column<double>(type: "float", nullable: false),
+                    PayDataLogId = table.Column<int>(type: "int", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_PayDataLogDetails", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_PayDataLogDetails_Bill_BillData_Bill_Id",
+                        column: x => x.Bill_Id,
+                        principalTable: "Bill_BillData",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_PayDataLogDetails_Bill_PayDataLog_PayDataLogId",
+                        column: x => x.PayDataLogId,
+                        principalTable: "Bill_PayDataLog",
                         principalColumn: "ID");
                 });
 
@@ -986,21 +1691,63 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Amount = table.Column<double>(type: "float", nullable: false),
                     Bill_Id = table.Column<long>(type: "bigint", nullable: false),
-                    BillPayment_Id = table.Column<long>(type: "bigint", nullable: false)
+                    BillPayment_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bill_PaymentTransactions", x => x.ID);
                     table.ForeignKey(
-                        name: "FK_Bill_PaymentTransactions_Bill_BillPayment_Bill_Id",
+                        name: "FK_Bill_PaymentTransactions_Bill_BillData_Bill_Id",
                         column: x => x.Bill_Id,
-                        principalTable: "Bill_BillPayment",
+                        principalTable: "Bill_BillData",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Bill_PaymentTransactions_Bill_Payment_BillPayment_Id",
                         column: x => x.BillPayment_Id,
                         principalTable: "Bill_Payment",
                         principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bill_PrintLog",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BillPayment_Id = table.Column<long>(type: "bigint", nullable: false),
+                    Disc = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LogDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bill_PrintLog", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Bill_PrintLog_Bill_Payment_BillPayment_Id",
+                        column: x => x.BillPayment_Id,
+                        principalTable: "Bill_Payment",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Bill_PrintLog_Perm_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Perm_Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -1011,6 +1758,7 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Complaint_Id = table.Column<long>(type: "bigint", nullable: false),
+                    InternetSpeed = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -1030,16 +1778,59 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                         principalColumn: "ID");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Opr_MeterReadings_Logs",
+                columns: table => new
+                {
+                    ID = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OldValue = table.Column<double>(type: "float", nullable: false),
+                    NewValue = table.Column<double>(type: "float", nullable: false),
+                    MeterReadings_Id = table.Column<long>(type: "bigint", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    InsertDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InsertBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    UpdateBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    DeleteBy = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    CompanyTenantId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Opr_MeterReadings_Logs", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Opr_MeterReadings_Logs_Opr_MeterReadings_MeterReadings_Id",
+                        column: x => x.MeterReadings_Id,
+                        principalTable: "Opr_MeterReadings",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.InsertData(
+                table: "Bill_PaymentType",
+                columns: new[] { "ID", "CompanyTenantId", "DeleteBy", "DeleteDate", "InsertBy", "InsertDate", "IsDeleted", "Name", "SysName", "UpdateBy", "UpdateDate" },
+                values: new object[,]
+                {
+                    { 1, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "كاش", "cash", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "شيك", "cheque", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "فيزا", "visa", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Cust_CustomerStatus",
+                columns: new[] { "ID", "CompanyTenantId", "DeleteBy", "DeleteDate", "InsertBy", "InsertDate", "IsDeleted", "Name", "UpdateBy", "UpdateDate" },
+                values: new object[] { 1, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "سارى", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) });
+
             migrationBuilder.InsertData(
                 table: "Hr_Status",
                 columns: new[] { "ID", "CompanyTenantId", "DeleteBy", "DeleteDate", "InsertBy", "InsertDate", "IsDeleted", "Name", "UpdateBy", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2635), false, "يعمل", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2636) },
-                    { 2, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2638), false, "تمت اقالتة", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2638) },
-                    { 3, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2640), false, "أجازة", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2640) },
-                    { 4, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2642), false, "معاش", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2642) },
-                    { 5, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2644), false, "متوفى", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2644) }
+                    { 1, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "يعمل", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "تمت اقالتة", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "أجازة", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "معاش", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "متوفى", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -1047,11 +1838,10 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 columns: new[] { "ID", "CompanyTenantId", "DeleteBy", "DeleteDate", "InsertBy", "InsertDate", "IsDeleted", "Name", "UpdateBy", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 12, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2469), false, "متعذر", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2476) },
-                    { 13, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2478), false, "معطل", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2479) },
-                    { 14, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2480), false, "صالح", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2481) },
-                    { 10040, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2482), false, "مغشى", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2483) },
-                    { 20131, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2484), false, "انتظار", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2485) }
+                    { 15, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "متعذر", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 16, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "غير مقروء", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 17, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "تقديرية", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 18, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "صحيحة", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -1059,16 +1849,21 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 columns: new[] { "ID", "CompanyTenantId", "DeleteBy", "DeleteDate", "InsertBy", "InsertDate", "IsDeleted", "Name", "SysName", "UpdateBy", "UpdateDate" },
                 values: new object[,]
                 {
-                    { 1, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2611), false, "الموقع", "location", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2611) },
-                    { 2, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2614), false, "النشاط", "activity", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2614) },
-                    { 3, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2616), false, "عدد الوحدات", "unitsnumber", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2616) },
-                    { 4, null, null, null, null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2618), false, "صورة العميل", "customerimage", null, new DateTime(2022, 7, 22, 17, 1, 35, 483, DateTimeKind.Local).AddTicks(2618) }
+                    { 1, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "الموقع", "location", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "النشاط", "activity", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "عدد الوحدات", "unitsnumber", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, null, null, null, null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, "صورة العميل", "customerimage", null, new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Bill_BillPayment_Cutomer_Id",
-                table: "Bill_BillPayment",
-                column: "Cutomer_Id");
+                name: "IX_Bill_BillData_BillIssue_Id",
+                table: "Bill_BillData",
+                column: "BillIssue_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_BillData_Customer_Id",
+                table: "Bill_BillData",
+                column: "Customer_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bill_IssueDetail_Branch_Id",
@@ -1081,6 +1876,36 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "Issue_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bill_Issues_Company_Id",
+                table: "Bill_Issues",
+                column: "Company_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PayDataLog_Customer_Id",
+                table: "Bill_PayDataLog",
+                column: "Customer_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PayDataLog_Employee_Id",
+                table: "Bill_PayDataLog",
+                column: "Employee_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PayDataLogDetails_Bill_Id",
+                table: "Bill_PayDataLogDetails",
+                column: "Bill_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PayDataLogDetails_PayDataLogId",
+                table: "Bill_PayDataLogDetails",
+                column: "PayDataLogId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_Payment_BillPaymentSafe_Id",
+                table: "Bill_Payment",
+                column: "BillPaymentSafe_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bill_Payment_CustomerData_Id",
                 table: "Bill_Payment",
                 column: "CustomerData_Id");
@@ -1091,6 +1916,21 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "Employee_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bill_Payment_PaymentType_Id",
+                table: "Bill_Payment",
+                column: "PaymentType_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PaymentSafes_BillSafe_Id",
+                table: "Bill_PaymentSafes",
+                column: "BillSafe_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PaymentSafes_HrEmployee_Id",
+                table: "Bill_PaymentSafes",
+                column: "HrEmployee_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bill_PaymentTransactions_Bill_Id",
                 table: "Bill_PaymentTransactions",
                 column: "Bill_Id");
@@ -1099,6 +1939,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "IX_Bill_PaymentTransactions_BillPayment_Id",
                 table: "Bill_PaymentTransactions",
                 column: "BillPayment_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PrintLog_BillPayment_Id",
+                table: "Bill_PrintLog",
+                column: "BillPayment_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bill_PrintLog_UserId",
+                table: "Bill_PrintLog",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cust_CustomerData_Block_Id",
@@ -1116,6 +1966,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "CustomerStatus_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Hr_EmployeeBlocks_Block_Id",
+                table: "Hr_EmployeeBlocks",
+                column: "Block_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Hr_EmployeeBlocks_Collector_Id",
+                table: "Hr_EmployeeBlocks",
+                column: "Collector_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Hr_Employees_Branch_Id",
                 table: "Hr_Employees",
                 column: "Branch_Id");
@@ -1126,9 +1986,39 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "Status_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Noti_Message_UserSender_Id",
+                table: "Noti_Message",
+                column: "UserSender_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Noti_MessageUser_Message_Id",
+                table: "Noti_MessageUser",
+                column: "Message_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Noti_MessageUser_User_Id",
+                table: "Noti_MessageUser",
+                column: "User_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Noti_UserModule_Module_Id",
+                table: "Noti_UserModule",
+                column: "Module_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Noti_UserModule_User_Id",
+                table: "Noti_UserModule",
+                column: "User_Id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Opr_ComplaintImages_Complaint_Id",
                 table: "Opr_ComplaintImages",
                 column: "Complaint_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Opr_Complaints_BlockId",
+                table: "Opr_Complaints",
+                column: "BlockId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Opr_Complaints_ComplaintType_Id",
@@ -1161,9 +2051,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "Employee_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opr_MeterReadings_Issue_Id",
+                name: "IX_Opr_MeterReadings_Issue_Details_Id",
                 table: "Opr_MeterReadings",
-                column: "Issue_Id");
+                column: "Issue_Details_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Opr_MeterReadings_MeterStatus_Id",
@@ -1171,23 +2061,33 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "MeterStatus_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opr_UpdetedCustomers_CustomerActivity_Id",
-                table: "Opr_UpdetedCustomers",
+                name: "IX_Opr_MeterReadings_Logs_MeterReadings_Id",
+                table: "Opr_MeterReadings_Logs",
+                column: "MeterReadings_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Opr_UpdatedCustomers_CustomerActivity_Id",
+                table: "Opr_UpdatedCustomers",
                 column: "CustomerActivity_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opr_UpdetedCustomers_CustomerData_Id",
-                table: "Opr_UpdetedCustomers",
+                name: "IX_Opr_UpdatedCustomers_CustomerData_Id",
+                table: "Opr_UpdatedCustomers",
                 column: "CustomerData_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opr_UpdetedCustomers_Employee_Id",
-                table: "Opr_UpdetedCustomers",
+                name: "IX_Opr_UpdatedCustomers_Employee_Id",
+                table: "Opr_UpdatedCustomers",
                 column: "Employee_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Opr_UpdetedCustomers_UpdatedCustomerType_Id",
-                table: "Opr_UpdetedCustomers",
+                name: "IX_Opr_UpdatedCustomers_Issue_Id",
+                table: "Opr_UpdatedCustomers",
+                column: "Issue_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Opr_UpdatedCustomers_UpdatedCustomerType_Id",
+                table: "Opr_UpdatedCustomers",
                 column: "UpdatedCustomerType_Id");
 
             migrationBuilder.CreateIndex(
@@ -1211,6 +2111,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "NormalizedName",
                 unique: true,
                 filter: "[NormalizedName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Perm_UserBranches_Branch_Id",
+                table: "Perm_UserBranches",
+                column: "Branch_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Perm_UserBranches_User_Id",
+                table: "Perm_UserBranches",
+                column: "User_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Perm_UserClaims_UserId",
@@ -1255,9 +2165,9 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 column: "CompanyId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Shar_Areas_Branch_Id",
+                name: "IX_Shar_Areas_City_Id",
                 table: "Shar_Areas",
-                column: "Branch_Id");
+                column: "City_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Shar_Blocks_Area_Id",
@@ -1268,6 +2178,16 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "IX_Shar_Branches_Company_Id",
                 table: "Shar_Branches",
                 column: "Company_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shar_Cities_State_Id",
+                table: "Shar_Cities",
+                column: "State_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Shar_States_Branch_Id",
+                table: "Shar_States",
+                column: "Branch_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tech_Technician_WalkingLines_Technician_Id",
@@ -1288,28 +2208,52 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Bill_IssueDetail");
+                name: "Bill_PayDataLogDetails");
 
             migrationBuilder.DropTable(
                 name: "Bill_PaymentTransactions");
 
             migrationBuilder.DropTable(
+                name: "Bill_PrintLog");
+
+            migrationBuilder.DropTable(
+                name: "Cust_CustomerDataTemp");
+
+            migrationBuilder.DropTable(
                 name: "Hr_EmployeeBlocks");
+
+            migrationBuilder.DropTable(
+                name: "Hr_Employees_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Noti_FcmConfig");
+
+            migrationBuilder.DropTable(
+                name: "Noti_MessageUser");
+
+            migrationBuilder.DropTable(
+                name: "Noti_UserModule");
 
             migrationBuilder.DropTable(
                 name: "Opr_ComplaintImages");
 
             migrationBuilder.DropTable(
-                name: "Opr_MeterReadings");
+                name: "Opr_MeterReadings_Logs");
 
             migrationBuilder.DropTable(
-                name: "Opr_UpdetedCustomers");
+                name: "Opr_UpdatedCustomers");
+
+            migrationBuilder.DropTable(
+                name: "Perm_Menu");
 
             migrationBuilder.DropTable(
                 name: "Perm_OnlineUsers");
 
             migrationBuilder.DropTable(
                 name: "Perm_RoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "Perm_UserBranches");
 
             migrationBuilder.DropTable(
                 name: "Perm_UserClaims");
@@ -1324,22 +2268,49 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "Perm_UserTokens");
 
             migrationBuilder.DropTable(
+                name: "Shar_Areas_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Shar_Bills_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Shar_Blocks_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Shar_Branches_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Shar_Cities_Temp");
+
+            migrationBuilder.DropTable(
+                name: "Shar_States_Temp");
+
+            migrationBuilder.DropTable(
                 name: "Tech_Technician_WalkingLines");
 
             migrationBuilder.DropTable(
                 name: "Tech_TechnicianLocations");
 
             migrationBuilder.DropTable(
-                name: "Bill_BillPayment");
+                name: "Bill_PayDataLog");
+
+            migrationBuilder.DropTable(
+                name: "Bill_BillData");
 
             migrationBuilder.DropTable(
                 name: "Bill_Payment");
 
             migrationBuilder.DropTable(
+                name: "Noti_Message");
+
+            migrationBuilder.DropTable(
+                name: "Noti_FcmModules");
+
+            migrationBuilder.DropTable(
                 name: "Opr_Complaints");
 
             migrationBuilder.DropTable(
-                name: "Opr_MeterStatus");
+                name: "Opr_MeterReadings");
 
             migrationBuilder.DropTable(
                 name: "Opr_UpdatedCustomerTypes");
@@ -1348,25 +2319,40 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
                 name: "Perm_Roles");
 
             migrationBuilder.DropTable(
-                name: "Perm_Users");
-
-            migrationBuilder.DropTable(
                 name: "Tech_Technicians");
 
             migrationBuilder.DropTable(
-                name: "Bill_Issues");
+                name: "Bill_PaymentSafes");
 
             migrationBuilder.DropTable(
-                name: "Cust_CustomerData");
+                name: "Bill_PaymentType");
+
+            migrationBuilder.DropTable(
+                name: "Perm_Users");
 
             migrationBuilder.DropTable(
                 name: "Opr_ComplaintTypes");
 
             migrationBuilder.DropTable(
-                name: "Perm_UserTypes");
+                name: "Bill_IssueDetail");
+
+            migrationBuilder.DropTable(
+                name: "Cust_CustomerData");
+
+            migrationBuilder.DropTable(
+                name: "Opr_MeterStatus");
+
+            migrationBuilder.DropTable(
+                name: "Bill_Safes");
 
             migrationBuilder.DropTable(
                 name: "Hr_Employees");
+
+            migrationBuilder.DropTable(
+                name: "Perm_UserTypes");
+
+            migrationBuilder.DropTable(
+                name: "Bill_Issues");
 
             migrationBuilder.DropTable(
                 name: "Cust_CustomerActivities");
@@ -1382,6 +2368,12 @@ namespace UtilitiesManagement.DataAccess.Migrations.Utilities
 
             migrationBuilder.DropTable(
                 name: "Shar_Areas");
+
+            migrationBuilder.DropTable(
+                name: "Shar_Cities");
+
+            migrationBuilder.DropTable(
+                name: "Shar_States");
 
             migrationBuilder.DropTable(
                 name: "Shar_Branches");

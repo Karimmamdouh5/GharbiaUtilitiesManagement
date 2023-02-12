@@ -7,7 +7,7 @@ namespace UtilitiesManagement.Domain.Models.Bill
     {
         [Column("ID")]
         [Key] 
-        public long Id { get; set; }
+        public int Id { get; set; }
         [StringLength(50)]
         public string Name { get; set; }
         public string SysName { get; set; }

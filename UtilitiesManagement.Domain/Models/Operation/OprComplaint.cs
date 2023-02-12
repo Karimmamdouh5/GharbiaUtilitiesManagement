@@ -32,6 +32,7 @@
         public OprComplaintType ComplaintType { get; set; }
 
         public bool IsPublic { get; set; } = false;
+        public bool IsCustomerComplaint { get; set; } = false;
        
         public string? PublicAddress { get; set; }
 

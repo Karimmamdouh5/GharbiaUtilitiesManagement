@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UtilitiesManagement.DataAccess.Migrations.Utilities;
 using UtilitiesManagement.Domain.Interfaces.Notifications;
 using UtilitiesManagement.Domain.Models.Notification;
 
